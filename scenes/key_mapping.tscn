@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c37r5epf5ubqs"]
+
+[node name="Key_mapping" type="HBoxContainer"]
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(90, 40)
+layout_mode = 2
+
+[node name="Input" type="TextEdit" parent="."]
+custom_minimum_size = Vector2(200, 40)
+layout_mode = 2
