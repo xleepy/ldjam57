@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://e0m4wnojf64o"]
+[gd_scene load_steps=20 format=4 uid="uid://e0m4wnojf64o"]
 
 [ext_resource type="Texture2D" uid="uid://boeiigl4tafmq" path="res://assets/Room-1_2.png" id="1_ejswk"]
 [ext_resource type="Texture2D" uid="uid://dp8vpydyps1mh" path="res://assets/Spritesheet.png" id="1_wwpf4"]
@@ -210,14 +210,14 @@ texture = ExtResource("1_ejswk")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_6sh32")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_conm7"]
+size = Vector2(18, 18)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwgg1"]
 size = Vector2(15, 5.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6sh32"]
 size = Vector2(15, 30.5)
-
-[sub_resource type="LabelSettings" id="LabelSettings_ejswk"]
-font_size = 8
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ejswk"]
 size = Vector2(15, 8)
@@ -226,12 +226,9 @@ size = Vector2(15, 8)
 size = Vector2(15, 22)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bbk5w"]
-vertices = PackedVector2Array(126.773, 70.2031, 127.867, 167.539, 47.5625, 159.141, 27.7969, 68.8281)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(136.667, 60.3333, 138, 178.667, 39.3333, 168.333, 15.3333, 58.6667)])
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_conm7"]
-size = Vector2(20, 18)
+vertices = PackedVector2Array(103.289, 74.6875, 114.922, 117.102, 12.6406, 117.898, 22.9609, 73.8281, 61.9609, 73)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(62, 64, 111, 65, 128, 127, 0, 128, 15, 64)])
 
 [sub_resource type="LabelSettings" id="LabelSettings_6sh32"]
 font_size = 24
@@ -240,20 +237,30 @@ font_size = 24
 draw_center = false
 
 [node name="Level1" type="Node2D"]
+scale = Vector2(3, 3)
 
 [node name="Floor" type="TileMapLayer" parent="."]
-scale = Vector2(3, 3)
 tile_map_data = PackedByteArray("AAABAAQAAAABAAQAAAACAAQAAAACAAQAAAADAAQAAAADAAQAAAAEAAQAAAAEAAQAAAAFAAQAAAAFAAQAAAAGAAQAAAAGAAQAAAABAAUAAAABAAUAAAACAAUAAAACAAUAAAADAAUAAAADAAUAAAAEAAUAAAAEAAUAAAAFAAUAAAAFAAUAAAAGAAUAAAAGAAUAAAABAAYAAAABAAYAAAACAAYAAAACAAYAAAADAAYAAAADAAYAAAAEAAYAAAAEAAYAAAAFAAYAAAAFAAYAAAAGAAYAAAAGAAYAAAABAAcAAAABAAcAAAACAAcAAAACAAcAAAADAAcAAAADAAcAAAAEAAcAAAAEAAcAAAAFAAcAAAAFAAcAAAAGAAcAAAAGAAcAAAA=")
 tile_set = SubResource("TileSet_conm7")
 
 [node name="Wall" type="TileMapLayer" parent="." groups=["Wall"]]
-scale = Vector2(3, 3)
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAABAAAAAAACAAAAAAACAAAAAAADAAAAAAADAAIAAAAEAAAAAAADAAIAAAAFAAAAAAAFAAAAAAAAAAEAAAAAAAEAAAAAAAIAAAAAAAIAAAAAAAMAAAAAAAMAAAABAAMAAAABAAMAAAACAAMAAAACAAMAAAADAAMAAAADAAMAAAAFAAMAAAAFAAMAAAAEAAMAAAADAAIAAAAGAAIAAAAGAAIAAAAGAAMAAAAGAAMAAAAGAAEAAAAGAAEAAAAGAAAAAAAGAAAAAAABAAEAAAABAAEAAAACAAEAAAACAAEAAAABAAIAAAABAAIAAAACAAIAAAACAAIAAAADAAIAAAADAAIAAAADAAEAAAADAAIAAAAEAAEAAAADAAIAAAAEAAIAAAADAAIAAAAFAAIAAAAFAAIAAAAFAAEAAAAFAAEAAAAHAAAAAAAHAAAAAAAHAAEAAAAHAAEAAAAHAAIAAAAHAAIAAAAHAAMAAAAHAAMAAAAHAAQAAAAHAAQAAAAHAAUAAAAHAAUAAAAHAAYAAAAHAAYAAAAHAAcAAAAHAAcAAAAAAAQAAAAAAAQAAAAAAAUAAAAAAAUAAAAAAAYAAAAAAAYAAAAAAAcAAAAAAAcAAAA=")
 tile_set = SubResource("TileSet_ejswk")
 
+[node name="Node2D" type="Area2D" parent="." groups=["Wall"]]
+position = Vector2(75.6667, 111)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+texture = ExtResource("1_wwpf4")
+region_enabled = true
+region_rect = Rect2(138, 239, 12, 14)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D"]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_conm7")
+
 [node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(86, 279)
-scale = Vector2(3, 3)
+position = Vector2(28, 87.3333)
 script = ExtResource("2_m7ahb")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
@@ -274,19 +281,9 @@ shape = SubResource("RectangleShape2D_dwgg1")
 position = Vector2(1, -8.25)
 shape = SubResource("RectangleShape2D_6sh32")
 
-[node name="Label" type="Label" parent="Player"]
-visible = false
-offset_left = 9.0
-offset_top = -33.333
-offset_right = 19.0
-offset_bottom = -20.333
-text = "[E]"
-label_settings = SubResource("LabelSettings_ejswk")
-
 [node name="Enemy" type="CharacterBody2D" parent="."]
 modulate = Color(0.470191, 0.0159284, 0.132899, 1)
-position = Vector2(518, 91)
-scale = Vector2(3, 3)
+position = Vector2(173, 27.6667)
 script = ExtResource("4_6sh32")
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy"]
@@ -307,22 +304,8 @@ position = Vector2(-0.5, -3)
 shape = SubResource("RectangleShape2D_bbk5w")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-position = Vector2(351, -144)
-scale = Vector2(3, 3)
+position = Vector2(122.333, -61.6667)
 navigation_polygon = SubResource("NavigationPolygon_bbk5w")
-
-[node name="Box" type="StaticBody2D" parent="." groups=["Wall"]]
-position = Vector2(247, 290)
-scale = Vector2(3, 3)
-
-[node name="Sprite2D" type="Sprite2D" parent="Box"]
-texture = ExtResource("1_wwpf4")
-region_enabled = true
-region_rect = Rect2(138, 239, 12, 16)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Box"]
-position = Vector2(-0.333359, -1.66666)
-shape = SubResource("RectangleShape2D_conm7")
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("3_dwgg1")

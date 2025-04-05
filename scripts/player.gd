@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-@export var speed: int = Global.tile_size * 2
+@export var speed: int = Global.tile_size
 
 var directionsMap: Dictionary = {
 	'move_up': Vector2.UP,
@@ -39,7 +39,7 @@ func move(direction: Vector2) -> void:
 	)
 	var result = space_state.intersect_ray(query)
 	if result and result.collider.is_in_group("Wall"):
-		print('here', result)
+		print("here", result)
 		# Calculate the normal of the wall
 		var wall_normal = result.normal
 		# Project the velocity onto the wall's surface to allow sliding
@@ -62,7 +62,13 @@ func _physics_process(delta: float) -> void:
 
 func _on_body_area_body_entered(body: Node2D) -> void:
 	print('entered node: ', body)
+	if body.name == "Box":
+		body.z_index = 0
+		z_index = 1
+		$Label.visible = true
 
 
 func _on_body_area_body_exited(body: Node2D) -> void:
-	pass # Replace with function body.
+	$Label.visible = false
+	z_index = 0 
+	body.z_index = 0

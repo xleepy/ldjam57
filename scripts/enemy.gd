@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-var movement_speed: float = Global.tile_size * 2
-var detection_range: float = Global.tile_size * 2  # Range to detect player 16 * 2
+var movement_speed: float = Global.tile_size 
+var detection_range: float = Global.tile_size   # Range to detect player 16 * 2
 @onready var player_node: CharacterBody2D = $"../Player"
 
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
@@ -36,7 +36,6 @@ func _physics_process(delta):
 	else:
 		next_position = navigation_agent.get_next_path_position()
 		# Player is out of range, go back to original position
-	print('new position', next_position)
 	velocity = position.direction_to(next_position) * movement_speed
 	move_and_slide()
 
