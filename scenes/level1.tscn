@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=4 uid="uid://e0m4wnojf64o"]
+[gd_scene load_steps=14 format=4 uid="uid://e0m4wnojf64o"]
 
 [ext_resource type="Texture2D" uid="uid://dpxbhchelvfnn" path="res://assets/Spritesheet.png" id="1_wwpf4"]
 [ext_resource type="Script" uid="uid://dtth37rc2wtgu" path="res://scripts/player.gd" id="2_m7ahb"]
 [ext_resource type="Script" uid="uid://bc2q6rfb0e4df" path="res://scripts/level_ui.gd" id="3_dwgg1"]
+[ext_resource type="Texture2D" uid="uid://d3xjpwswgkqpo" path="res://assets/Detective.png" id="3_ru4tf"]
 [ext_resource type="PackedScene" uid="uid://cohuot7eqkgvi" path="res://scenes/ui/settings.tscn" id="4_dwgg1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dwgg1"]
@@ -2139,8 +2140,11 @@ separation = Vector2i(1, 1)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_6sh32")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dwgg1"]
+size = Vector2(15, 5.5)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6sh32"]
-size = Vector2(14, 14)
+size = Vector2(15, 30.5)
 
 [sub_resource type="LabelSettings" id="LabelSettings_6sh32"]
 font_size = 24
@@ -2159,19 +2163,26 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAQABAAAAABAAAAAAARABAAAAACAAAAAAARABA
 tile_set = SubResource("TileSet_ejswk")
 
 [node name="Player" type="CharacterBody2D" parent="."]
-modulate = Color(0.426144, 0.690847, 1.92523e-07, 1)
-position = Vector2(8, 72)
+position = Vector2(8, 90)
 script = ExtResource("2_m7ahb")
 
 [node name="Sprite2D" type="Sprite2D" parent="Player"]
-texture = ExtResource("1_wwpf4")
-region_enabled = true
-region_rect = Rect2(477, 1, 16, 16)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-shape = SubResource("RectangleShape2D_6sh32")
+position = Vector2(1, -9)
+texture = ExtResource("3_ru4tf")
+region_rect = Rect2(477, 1, 16, 32)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, -10)
+
+[node name="legs_collision" type="CollisionShape2D" parent="Player"]
+position = Vector2(1, 4.25)
+shape = SubResource("RectangleShape2D_dwgg1")
+
+[node name="BodyArea" type="Area2D" parent="Player"]
+
+[node name="body_collision" type="CollisionShape2D" parent="Player/BodyArea"]
+position = Vector2(1, -8.25)
+shape = SubResource("RectangleShape2D_6sh32")
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource("3_dwgg1")
@@ -2224,5 +2235,6 @@ text = "Back to menu
 
 [node name="Settings" parent="UI" instance=ExtResource("4_dwgg1")]
 
+[connection signal="body_entered" from="Player/BodyArea" to="Player" method="_on_body_area_body_entered"]
 [connection signal="pressed" from="UI/Menu/VBoxContainer/SettingsBtn" to="UI" method="_on_settings_btn_pressed"]
 [connection signal="pressed" from="UI/Menu/VBoxContainer/BackToMenu" to="UI" method="_on_back_to_menu_pressed"]

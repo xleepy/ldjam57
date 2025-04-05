@@ -31,7 +31,7 @@ func move(direction: Vector2) -> void:
 	var target_velocity = direction * speed
 	var space_rid = get_world_2d().space
 	var space_state = PhysicsServer2D.space_get_direct_state(space_rid)
-	var raycast_distance = target_velocity.length() * get_physics_process_delta_time() + 10.0
+	var raycast_distance = target_velocity.length() * get_physics_process_delta_time() 
 	# Create raycast query from current position in the direction of movement
 	var query = PhysicsRayQueryParameters2D.create(
 		global_position,
@@ -57,3 +57,7 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_pressed(action):
 			var move_vector = directionsMap[action]
 			move(move_vector)
+
+
+func _on_body_area_body_entered(body: Node2D) -> void:
+	print('entered node: ', body)
