@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpxbhchelvfnn"
-path="res://.godot/imported/Spritesheet.png-e3646ab470d1f32c0e9eaa51b8116775.ctex"
+uid="uid://boeiigl4tafmq"
+path="res://.godot/imported/Room-1_2.png-f6eb881dfaf4a17e0346a6bf6988f333.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Spritesheet.png"
-dest_files=["res://.godot/imported/Spritesheet.png-e3646ab470d1f32c0e9eaa51b8116775.ctex"]
+source_file="res://assets/Room-1_2.png"
+dest_files=["res://.godot/imported/Room-1_2.png-f6eb881dfaf4a17e0346a6bf6988f333.ctex"]
 
 [params]
 
