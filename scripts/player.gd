@@ -39,6 +39,7 @@ func move(direction: Vector2) -> void:
 	)
 	var result = space_state.intersect_ray(query)
 	if result and result.collider.is_in_group("Wall"):
+		print('here', result)
 		# Calculate the normal of the wall
 		var wall_normal = result.normal
 		# Project the velocity onto the wall's surface to allow sliding
