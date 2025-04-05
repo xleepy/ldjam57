@@ -6,6 +6,12 @@ var detection_range: float = Global.tile_size * 2  # Range to detect player 16 *
 
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 
+func random_position() -> Vector2:
+	var viewport_rect = get_viewport_rect().size
+	var randX = randf_range(0, viewport_rect.x)
+	var randY = randf_range(0, viewport_rect.y)
+	return Vector2(randX, randY)
+
 func _ready():
 	# These values need to be adjusted for the actor's speed
 	# and the navigation layout.
@@ -13,10 +19,8 @@ func _ready():
 	navigation_agent.target_desired_distance = 2.0
 	# keep agent on same place for now 
 	actor_setup.call_deferred()
-	var viewport_rect = get_viewport_rect().size
-	var randX = randf_range(0, viewport_rect.x)
-	var randY = randf_range(0, viewport_rect.y)
-	make_path(Vector2(randX, randY))
+	var possible_position = random_position()
+	make_path(possible_position)
 
 func actor_setup():
 	# Wait for the first physics frame so the NavigationServer can sync.
@@ -54,7 +58,5 @@ func make_path(position: Vector2):
 
 
 func _on_navigation_agent_2d_navigation_finished() -> void:
-	var viewport_rect = get_viewport_rect().size
-	var randX = randf_range(0, viewport_rect.x)
-	var randY = randf_range(0, viewport_rect.y)
-	make_path(Vector2(randX, randY)) # Replace with function body.
+	var possible_position = random_position()
+	make_path(possible_position) 
