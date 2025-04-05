@@ -1,18 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://4ftyet7a2b45"]
+[gd_scene load_steps=6 format=3 uid="uid://4ftyet7a2b45"]
 
 [ext_resource type="Script" uid="uid://cheprfhboa6pd" path="res://scripts/main.gd" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://d4bspmfum5wc" path="res://scripts/ui.gd" id="2_0wfyh"]
-[ext_resource type="Script" uid="uid://cq37ydx5qoc25" path="res://scripts/settings.gd" id="3_sugp2"]
+[ext_resource type="PackedScene" uid="uid://cohuot7eqkgvi" path="res://scenes/ui/settings.tscn" id="3_sugp2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_sgp6g"]
 font_size = 24
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o5qli"]
 draw_center = false
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sugp2"]
-
-[sub_resource type="Theme" id="Theme_sugp2"]
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_o5qli")
@@ -70,54 +66,8 @@ layout_mode = 2
 text = "Quit
 "
 
-[node name="Settings" type="Panel" parent="UI"]
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("3_sugp2")
-
-[node name="Container" type="VBoxContainer" parent="UI/Settings"]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -46.5
-offset_top = -17.5
-offset_right = 46.5
-offset_bottom = 17.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="InputsContainer" type="VBoxContainer" parent="UI/Settings/Container"]
-layout_mode = 2
-
-[node name="Panel" type="Panel" parent="UI/Settings/Container"]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_sugp2")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="UI/Settings/Container"]
-layout_mode = 2
-theme = SubResource("Theme_sugp2")
-
-[node name="Back" type="Button" parent="UI/Settings/Container/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-text = "Back"
-
-[node name="Save" type="Button" parent="UI/Settings/Container/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
-text = "Save"
+[node name="Settings" parent="UI" instance=ExtResource("3_sugp2")]
 
 [connection signal="pressed" from="UI/Menu/VBoxContainer/NewGameBtn" to="UI" method="_on_new_game_btn_pressed"]
 [connection signal="pressed" from="UI/Menu/VBoxContainer/SettingsBtn" to="UI" method="_on_settings_btn_pressed"]
 [connection signal="pressed" from="UI/Menu/VBoxContainer/QuitBtn" to="UI" method="_on_quit_btn_pressed"]
-[connection signal="pressed" from="UI/Settings/Container/HBoxContainer/Back" to="UI/Settings" method="_on_button_pressed"]
-[connection signal="pressed" from="UI/Settings/Container/HBoxContainer/Save" to="UI/Settings" method="_on_save_pressed"]

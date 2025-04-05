@@ -1,6 +1,6 @@
 extends Panel
 
-@onready var field: PackedScene = load("res://scenes/key_mapping.tscn")
+@onready var field: PackedScene = load("res://scenes/ui/key_mapping.tscn")
 
 
 func _on_button_pressed() -> void:
