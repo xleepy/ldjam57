@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-@export var speed: int = Global.tile_size
+@export var speed: int = Global.tile_size * 2
 
 var directionsMap: Dictionary = {
 	'move_up': Vector2.UP,
@@ -10,6 +10,8 @@ var directionsMap: Dictionary = {
 	'move_left': Vector2.LEFT
 }
 
+
+var current_interactable_item: Node2D
 
 var move_actions = []
 
@@ -23,23 +25,25 @@ func _ready() -> void:
 		if action.begins_with("move_"):
 			move_actions.append(action)
 
+func intersect_ray(direction: Vector2, distance: float) -> Dictionary:
+	var space_rid = get_world_2d().space
+	var space_state = PhysicsServer2D.space_get_direct_state(space_rid)
+	# Create raycast query from current position in the direction of movement
+	var query = PhysicsRayQueryParameters2D.create(
+		global_position,
+		global_position + direction * distance
+	)
+	return space_state.intersect_ray(query)
+
 func move(direction: Vector2) -> void:
 	if direction.length() > 0:
 		direction = direction.normalized()
 	
 	# Set target velocity based on input direction
 	var target_velocity = direction * speed
-	var space_rid = get_world_2d().space
-	var space_state = PhysicsServer2D.space_get_direct_state(space_rid)
 	var raycast_distance = target_velocity.length() * get_physics_process_delta_time() 
-	# Create raycast query from current position in the direction of movement
-	var query = PhysicsRayQueryParameters2D.create(
-		global_position,
-		global_position + direction * raycast_distance
-	)
-	var result = space_state.intersect_ray(query)
+	var result = intersect_ray(direction, raycast_distance)
 	if result and result.collider.is_in_group("Wall"):
-		print("here", result)
 		# Calculate the normal of the wall
 		var wall_normal = result.normal
 		# Project the velocity onto the wall's surface to allow sliding
@@ -51,24 +55,36 @@ func move(direction: Vector2) -> void:
 	
 	move_and_slide()
 
-	
+
+func check_object_by_move_direction(direction: Vector2):
+	var next_result = intersect_ray(direction, Global.tile_size)
+	if next_result and next_result.collider.is_in_group("Interactable"):
+		current_interactable_item = next_result.collider
+		z_index = 1 if direction == Vector2.UP else 0
+		$Label.visible = true
+	else:
+		current_interactable_item = null
+		$Label.visible = false
+		$Label.text = "[E] to interact"
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("interact") and current_interactable_item:
+		$Label.text = "Interacted!"
+		current_interactable_item.interact()
 
 func _physics_process(delta: float) -> void:
 	for action in move_actions:
 		if Input.is_action_pressed(action):
 			var move_vector = directionsMap[action]
 			move(move_vector)
+			check_object_by_move_direction(move_vector)
+			
+			
 
 
 func _on_body_area_body_entered(body: Node2D) -> void:
 	print('entered node: ', body)
-	if body.name == "Box":
-		body.z_index = 0
-		z_index = 1
-		$Label.visible = true
 
 
 func _on_body_area_body_exited(body: Node2D) -> void:
-	$Label.visible = false
-	z_index = 0 
-	body.z_index = 0
+	pass

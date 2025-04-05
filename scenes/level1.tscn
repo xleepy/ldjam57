@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d3xjpwswgkqpo" path="res://assets/Detective.png" id="3_ru4tf"]
 [ext_resource type="Script" uid="uid://bwqhmikm7fmgk" path="res://scripts/enemy.gd" id="4_6sh32"]
 [ext_resource type="PackedScene" uid="uid://cohuot7eqkgvi" path="res://scenes/ui/settings.tscn" id="4_dwgg1"]
+[ext_resource type="Script" uid="uid://ente7ejhjym1" path="res://scripts/box.gd" id="5_bbk5w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bbk5w"]
 texture = ExtResource("1_ejswk")
@@ -216,9 +217,6 @@ size = Vector2(15, 5.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6sh32"]
 size = Vector2(15, 30.5)
 
-[sub_resource type="LabelSettings" id="LabelSettings_ejswk"]
-font_size = 8
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ejswk"]
 size = Vector2(15, 8)
 
@@ -231,7 +229,7 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(136.667, 60.3333, 138, 178.667, 39.3333, 168.333, 15.3333, 58.6667)])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_conm7"]
-size = Vector2(20, 18)
+size = Vector2(12.3333, 13.3333)
 
 [sub_resource type="LabelSettings" id="LabelSettings_6sh32"]
 font_size = 24
@@ -277,11 +275,11 @@ shape = SubResource("RectangleShape2D_6sh32")
 [node name="Label" type="Label" parent="Player"]
 visible = false
 offset_left = 9.0
-offset_top = -33.333
-offset_right = 19.0
-offset_bottom = -20.333
+offset_top = -33.0
+offset_right = 22.0
+offset_bottom = -19.0
+scale = Vector2(0.6, 0.6)
 text = "[E]"
-label_settings = SubResource("LabelSettings_ejswk")
 
 [node name="Enemy" type="CharacterBody2D" parent="."]
 modulate = Color(0.470191, 0.0159284, 0.132899, 1)
@@ -311,9 +309,10 @@ position = Vector2(351, -144)
 scale = Vector2(3, 3)
 navigation_polygon = SubResource("NavigationPolygon_bbk5w")
 
-[node name="Box" type="StaticBody2D" parent="." groups=["Wall"]]
+[node name="Box" type="StaticBody2D" parent="." groups=["Interactable", "Wall"]]
 position = Vector2(247, 290)
 scale = Vector2(3, 3)
+script = ExtResource("5_bbk5w")
 
 [node name="Sprite2D" type="Sprite2D" parent="Box"]
 texture = ExtResource("1_wwpf4")
@@ -321,7 +320,7 @@ region_enabled = true
 region_rect = Rect2(138, 239, 12, 16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Box"]
-position = Vector2(-0.333359, -1.66666)
+position = Vector2(-0.166664, -1.33334)
 shape = SubResource("RectangleShape2D_conm7")
 
 [node name="UI" type="CanvasLayer" parent="."]

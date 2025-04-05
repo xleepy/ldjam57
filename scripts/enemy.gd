@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-var movement_speed: float = Global.tile_size 
-var detection_range: float = Global.tile_size   # Range to detect player 16 * 2
+var movement_speed: float = Global.tile_size * 2 
+var detection_range: float = Global.tile_size * 2   # Range to detect player 16 * 2
 @onready var player_node: CharacterBody2D = $"../Player"
 
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
