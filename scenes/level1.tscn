@@ -228,9 +228,9 @@ font_size = 24
 draw_center = false
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bbk5w"]
-vertices = PackedVector2Array(131, 70.8125, 131, 119.938, -23.8516, 119.047, -23.1406, 70, 86.8125, 70)
+vertices = PackedVector2Array(103.289, 74.6875, 114.922, 117.102, 12.6406, 117.898, 22.9609, 73.8281, 61.9609, 73)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-6, 60, 87, 60, 141, 61, 141, 130, -34, 129, -33, 60)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(62, 64, 111, 65, 128, 127, 0, 128, 15, 64)])
 
 [node name="Level1" type="Node2D"]
 
@@ -338,7 +338,6 @@ text = "Back to menu
 [node name="Settings" parent="UI" instance=ExtResource("4_dwgg1")]
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-visible = false
 navigation_polygon = SubResource("NavigationPolygon_bbk5w")
 
 [connection signal="body_entered" from="Player/BodyArea" to="Player" method="_on_body_area_body_entered"]
