@@ -14,3 +14,7 @@ config/name="gamejam"
 run/main_scene="uid://4ftyet7a2b45"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Global="*res://scripts/global.gd"
