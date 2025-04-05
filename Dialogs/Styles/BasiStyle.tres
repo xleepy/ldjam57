@@ -35,7 +35,7 @@ script = ExtResource("1_abjns")
 scene = ExtResource("5_ffpii")
 overrides = {
 "box_margin_bottom": "10.0",
-"box_size": "Vector2(300, 60)",
+"box_size": "Vector2(800, 200)",
 "name_label_custom_font_size": "40.0"
 }
 
