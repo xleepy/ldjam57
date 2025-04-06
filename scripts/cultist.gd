@@ -2,9 +2,11 @@ extends CharacterBody2D
 
 var movement_speed: float = Global.tile_size * 2 
 var detection_range: float = Global.tile_size * 2   # Range to detect player 16 * 2
-@onready var player_node: Player = $"../Player"
 
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
+@onready var animation: AnimatedSprite2D = $AnimatedSprite2D
+
+var state = 'idle'
 
 func random_position() -> Vector2:
 	var viewport_rect = get_viewport_rect().size
@@ -27,17 +29,26 @@ func actor_setup():
 	await get_tree().physics_frame
 
 func _physics_process(delta):
+	var player: Player = get_tree().get_first_node_in_group("Player")
+	if not player:
+		return;
 	# Calculate distance to player
-	var distance_to_player = global_position.distance_to(player_node.global_position)
+	var distance_to_player = global_position.distance_to(player.global_position)
 	var next_position: Vector2
-	if not player_node.is_hidden and distance_to_player <= detection_range:
+	if not player.is_hidden and distance_to_player <= detection_range:
 		# Player is within detection range, follow them
-		next_position = player_node.global_position
+		next_position = player.global_position
 	else:
 		next_position = navigation_agent.get_next_path_position()
 		# Player is out of range, go back to original position
-	velocity = position.direction_to(next_position) * movement_speed
-	move_and_slide()
+	var direction = position.direction_to(next_position)
+	if direction.x < 0:
+		animation.scale.x = -1.0
+	elif direction.x > 0:
+		animation.scale.x = 1
+	velocity = direction * movement_speed
+	if state == 'walk':
+		move_and_slide()
 
 func set_movement_target(movement_target: Vector2):
 	navigation_agent.target_position = movement_target
@@ -53,9 +64,19 @@ func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	
 func make_path(position: Vector2):
 	navigation_agent.target_position = position
-	
 
 
 func _on_navigation_agent_2d_navigation_finished() -> void:
+	animation.play("idle")
+	state = 'idle'
+	$Timer.start(1)
+
+
+func _on_timer_timeout() -> void:
 	var possible_position = random_position()
 	make_path(possible_position) 
+
+
+func _on_navigation_agent_2d_path_changed() -> void:
+	animation.play("walk")
+	state = 'walk'

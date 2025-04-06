@@ -76,7 +76,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ebdk3"]
@@ -85,7 +85,7 @@ size = Vector2(9.33333, 5.83333)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wp5tr"]
 size = Vector2(10.6667, 29.6667)
 
-[node name="Doctor" type="CharacterBody2D"]
+[node name="Doctor" type="CharacterBody2D" groups=["Interactable"]]
 z_index = 1
 scale = Vector2(3, 3)
 script = ExtResource("1_wp5tr")

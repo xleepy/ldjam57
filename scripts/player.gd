@@ -109,7 +109,6 @@ func hide_player() -> void:
 		current_interactable_item.z_index = 1
 		animation.play("hide_behind")
 		is_hidden = true
-		#Dialogic.start("Prolog")
 		
 func sit(y_position: float) -> void:
 	animation.play('sit_front')

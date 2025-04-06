@@ -23,16 +23,13 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 [dialogic]
 
 directories/dch_directory={
-"Henry_Mason": "res://Dialogs/Characters/Henry_Mason.dch",
 "description": "res://Dialogs/Characters/description.dch",
-"ferry_captain": "res://Dialogs/Characters/ferry_captain.dch",
 "letter": "res://Dialogs/Characters/letter.dch",
 "protagonist": "res://Dialogs/Characters/protagonist.dch",
 "psychiatrist": "res://Dialogs/Characters/psychiatrist.dch"
 }
 directories/dtl_directory={
 "Act_II_Investigation": "res://Dialogs/Act_II_Investigation.dtl",
-"Henry_Mason": "res://Dialogs/Henry_Mason.dtl",
 "Prolog": "res://Dialogs/Prolog.dtl"
 }
 glossary/default_case_sensitive=true
@@ -86,6 +83,7 @@ enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
 Wall=""
 Interactable=""
 Player=""
+Enemy=""
 
 [input]
 
