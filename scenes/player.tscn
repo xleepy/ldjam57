@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://d2286lgqhbjhq"]
+[gd_scene load_steps=20 format=3 uid="uid://d2286lgqhbjhq"]
 
 [ext_resource type="Script" uid="uid://dtth37rc2wtgu" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://bsusbri7waa7f" path="res://assets/Detective-Sheet.png" id="2_qhqgy"]
@@ -128,12 +128,16 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwgg1"]
-size = Vector2(15, 5.5)
+size = Vector2(11.5, 5.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
+size = Vector2(11.6667, 30.6667)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6sh32"]
-size = Vector2(15, 30.5)
+size = Vector2(18.3333, 14.3333)
 
 [node name="Player" type="CharacterBody2D"]
+z_index = 1
 scale = Vector2(3, 3)
 script = ExtResource("1_g2els")
 
@@ -146,13 +150,19 @@ offset = Vector2(0, -9)
 position = Vector2(0, -10)
 
 [node name="legs_collision" type="CollisionShape2D" parent="."]
-position = Vector2(1, 4.25)
+position = Vector2(-0.75, 4.25)
 shape = SubResource("RectangleShape2D_dwgg1")
 
-[node name="BodyArea" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
 
-[node name="body_collision" type="CollisionShape2D" parent="BodyArea"]
-position = Vector2(1, -8.25)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-0.833333, -8.33333)
+shape = SubResource("RectangleShape2D_g2els")
+
+[node name="InteractableArea" type="Area2D" parent="."]
+
+[node name="body_collision" type="CollisionShape2D" parent="InteractableArea"]
+position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_6sh32")
 
 [node name="Label" type="Label" parent="."]
@@ -164,5 +174,5 @@ offset_bottom = -19.0
 scale = Vector2(0.6, 0.6)
 text = "[E]"
 
-[connection signal="body_entered" from="BodyArea" to="." method="_on_body_area_body_entered"]
-[connection signal="body_exited" from="BodyArea" to="." method="_on_body_area_body_exited"]
+[connection signal="body_entered" from="InteractableArea" to="." method="_on_body_area_body_entered"]
+[connection signal="body_exited" from="InteractableArea" to="." method="_on_interactable_area_body_exited"]
