@@ -1,0 +1,67 @@
+[gd_resource type="Resource" script_class="DialogicStyle" load_steps=13 format=3 uid="uid://b2uma7eu4dib5"]
+
+[ext_resource type="Resource" uid="uid://d4n1kc3msb73q" path="res://Dialogs/Styles/BasiStyle.tres" id="1_3ln8d"]
+[ext_resource type="Script" uid="uid://cdwxdahactpo" path="res://addons/dialogic/Resources/dialogic_style_layer.gd" id="2_q3wdh"]
+[ext_resource type="Script" uid="uid://deycoevpso5yk" path="res://addons/dialogic/Resources/dialogic_style.gd" id="3_du684"]
+
+[sub_resource type="Resource" id="Resource_e8q1r"]
+script = ExtResource("2_q3wdh")
+overrides = {}
+
+[sub_resource type="Resource" id="Resource_hbtcj"]
+script = ExtResource("2_q3wdh")
+overrides = {}
+
+[sub_resource type="Resource" id="Resource_wwrti"]
+script = ExtResource("2_q3wdh")
+overrides = {}
+
+[sub_resource type="Resource" id="Resource_b3no7"]
+script = ExtResource("2_q3wdh")
+overrides = {}
+
+[sub_resource type="Resource" id="Resource_dqur4"]
+script = ExtResource("2_q3wdh")
+overrides = {
+"bold_font": "\"res://addons/dialogic/Example Assets/Fonts/CormorantGaramond-Bold.ttf\"",
+"box_size": "Vector2(800, 600)",
+"name_label_font": "\"res://addons/dialogic/Example Assets/Fonts/CormorantGaramond-Bold.ttf\"",
+"text_use_global_font": "false",
+"text_use_global_size": "false"
+}
+
+[sub_resource type="Resource" id="Resource_7ln3b"]
+script = ExtResource("2_q3wdh")
+overrides = {}
+
+[sub_resource type="Resource" id="Resource_wvv68"]
+script = ExtResource("2_q3wdh")
+overrides = {}
+
+[sub_resource type="Resource" id="Resource_ti6p4"]
+script = ExtResource("2_q3wdh")
+overrides = {}
+
+[sub_resource type="Resource" id="Resource_r5cd4"]
+script = ExtResource("2_q3wdh")
+overrides = {}
+
+[resource]
+script = ExtResource("3_du684")
+name = "Letter"
+inherits = ExtResource("1_3ln8d")
+layer_list = Array[String](["10", "11", "12", "13", "14", "15", "16", "17"])
+layer_info = {
+"": SubResource("Resource_e8q1r"),
+"10": SubResource("Resource_hbtcj"),
+"11": SubResource("Resource_wwrti"),
+"12": SubResource("Resource_b3no7"),
+"13": SubResource("Resource_dqur4"),
+"14": SubResource("Resource_7ln3b"),
+"15": SubResource("Resource_wvv68"),
+"16": SubResource("Resource_ti6p4"),
+"17": SubResource("Resource_r5cd4")
+}
+base_overrides = {}
+layers = Array[ExtResource("2_q3wdh")]([])
+metadata/_latest_layer = "13"
