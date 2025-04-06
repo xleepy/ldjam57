@@ -1,6 +1,4 @@
-extends StaticBody2D
-
-@onready var player: Player = $"../Player"
+extends InteractableObject
 
 func interact() -> void:
 	player.hide_player()
