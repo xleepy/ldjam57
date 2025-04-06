@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://bgol1ub670bmk"]
+
+[ext_resource type="Script" uid="uid://cu6keb0bbb1js" path="res://scripts/couch_scene.gd" id="1_wtv3h"]
+[ext_resource type="Texture2D" uid="uid://bxrcoyrn1eg0e" path="res://assets/Couch-green.png" id="1_y0x0p"]
+[ext_resource type="Texture2D" uid="uid://x81y0p7u1nq1" path="res://assets/Couch-purple.png" id="2_wtv3h"]
+[ext_resource type="Texture2D" uid="uid://dyifp0ys1dx0b" path="res://assets/Couch-red.png" id="3_8vcbh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_42p3j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_y0x0p")
+}],
+"loop": true,
+"name": &"green",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wtv3h")
+}],
+"loop": true,
+"name": &"purple",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_8vcbh")
+}],
+"loop": true,
+"name": &"red",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_07bsf"]
+size = Vector2(31.3333, 16)
+
+[node name="couch" type="StaticBody2D"]
+scale = Vector2(3, 3)
+script = ExtResource("1_wtv3h")
+
+[node name="Green" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_42p3j")
+animation = &"red"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3.17891e-07, 0)
+shape = SubResource("RectangleShape2D_07bsf")

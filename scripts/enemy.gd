@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var movement_speed: float = Global.tile_size * 2 
 var detection_range: float = Global.tile_size * 2   # Range to detect player 16 * 2
-@onready var player_node: CharacterBody2D = $"../Player"
+@onready var player_node: Player = $"../Player"
 
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 
@@ -30,7 +30,7 @@ func _physics_process(delta):
 	# Calculate distance to player
 	var distance_to_player = global_position.distance_to(player_node.global_position)
 	var next_position: Vector2
-	if distance_to_player <= detection_range:
+	if not player_node.is_hidden and distance_to_player <= detection_range:
 		# Player is within detection range, follow them
 		next_position = player_node.global_position
 	else:

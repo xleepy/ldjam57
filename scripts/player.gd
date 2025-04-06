@@ -22,6 +22,8 @@ var interactable_areas_to_check: Dictionary = {
 }
 
 var current_action: String
+var is_hidden = false
+var is_sitting = false
 
 var current_interactable_item: Node2D
 
@@ -75,8 +77,13 @@ func move(direction: Vector2) -> void:
 
 func reset_interactable() -> void:
 	if current_interactable_item:
+		z_index = 1
+		current_interactable_item.z_index = 0
 		$Label.visible = false
 		$Label.text = "[E] to interact"
+		is_sitting = false
+		is_hidden = false
+		current_interactable_item = null
 
 func set_interactable(node: Node2D) -> void:
 	if not node.is_in_group("Interactable"):
@@ -105,10 +112,13 @@ func hide_player() -> void:
 		z_index = 0
 		current_interactable_item.z_index = 1
 		animation.play("hide_behind")
+		is_hidden = true
 		#Dialogic.start("Prolog")
-
 		
-
+func sit() -> void:
+	animation.play('sit_front')
+	global_position.y = current_interactable_item.global_position.y 
+	is_sitting = true
 
 func _on_body_area_body_entered(body: Node2D) -> void:
 	set_interactable(body)
@@ -116,3 +126,4 @@ func _on_body_area_body_entered(body: Node2D) -> void:
 
 func _on_interactable_area_body_exited(body: Node2D) -> void:
 	reset_interactable()
+		
