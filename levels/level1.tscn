@@ -20,9 +20,9 @@ size = Vector2(15, 8)
 size = Vector2(15, 22)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bbk5w"]
-vertices = PackedVector2Array(126.773, 70.2031, 127.867, 167.539, 47.5625, 159.141, 27.7969, 68.8281)
+vertices = PackedVector2Array(77.6797, 122.953, 76.3125, 166.18, 25.9375, 167.141, 25.7109, 122.703)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(136.667, 60.3333, 138, 178.667, 39.3333, 168.333, 15.3333, 58.6667)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(88, 113, 86, 176, 16, 177.333, 15.6667, 112.667)])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_conm7"]
 size = Vector2(12.3333, 14.3333)
@@ -36,6 +36,7 @@ draw_center = false
 [node name="Level1" type="Node2D"]
 
 [node name="Room" parent="." instance=ExtResource("1_bekh1")]
+position = Vector2(-1, 1)
 room_variant = "left_wall"
 
 [node name="Room2" parent="." instance=ExtResource("1_bekh1")]
@@ -47,7 +48,7 @@ position = Vector2(86, 279)
 
 [node name="Enemy" type="CharacterBody2D" parent="."]
 modulate = Color(0.470191, 0.0159284, 0.132899, 1)
-position = Vector2(518, 91)
+position = Vector2(536, 228)
 scale = Vector2(3, 3)
 script = ExtResource("3_lf3p4")
 
