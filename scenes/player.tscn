@@ -134,7 +134,7 @@ size = Vector2(11.5, 5.5)
 size = Vector2(11.6667, 30.6667)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6sh32"]
-size = Vector2(18.3333, 14.3333)
+size = Vector2(17.1667, 12)
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 1
@@ -162,7 +162,7 @@ shape = SubResource("RectangleShape2D_g2els")
 [node name="InteractableArea" type="Area2D" parent="."]
 
 [node name="body_collision" type="CollisionShape2D" parent="InteractableArea"]
-position = Vector2(0, 2.5)
+position = Vector2(-0.333333, 4)
 shape = SubResource("RectangleShape2D_6sh32")
 
 [node name="Label" type="Label" parent="."]
