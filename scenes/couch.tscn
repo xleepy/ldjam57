@@ -35,7 +35,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_07bsf"]
 size = Vector2(31.3333, 16)
 
-[node name="couch" type="StaticBody2D"]
+[node name="couch" type="StaticBody2D" groups=["Interactable", "Wall"]]
 scale = Vector2(3, 3)
 script = ExtResource("1_wtv3h")
 
