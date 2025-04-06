@@ -1,0 +1,27 @@
+# Testing choices
+- official_familly_portrait
+	jump official_familly_portrait
+- message_in_ventilation
+	jump Act_II_Investigation/message_in_ventilation
+- sams_sketches
+- sams_room_window
+if {readElenasMessage} == false:
+	jump message_in_ventilation
+label official_familly_portrait
+description: A large, framed portrait hangs in the hallway—a formal depiction of the Mason family.\
+It appears only a few years old, judging by the face of the man you now know as Henry Mason. His expression is stern yet calculated, one gloved hand resting firmly on the back of a carved chair.\
+Beside him stands his wife. Around them, four children—two sons and two daughters.\
+The older daughter catches your eye. She stands just slightly apart from the others, her expression the only one not carefully composed.\
+Something unreadable flickers behind her eyes. A hint of defiance, perhaps. Or fear.
+[end_timeline]
+label message_in_ventilation
+description: You notice small ventialtion shaft near the floor. \
+Be cautious, be clever\
+You drop to your knees and peer inside. There’s a dim light spilling in from the next room—just enough to catch the shape of something behind the bars.
+description: The cover comes off easily. Too easily. You’re clearly not the first to remove it.\
+Tucked into the narrow space behind it is a stack of papers. Several pages of handwritten messages—coded, in some cipher or language you don’t recognize.\
+But one thing is clear\: there are two distinct sets of handwriting.\
+One is Sam’s. The other is unmistakably a woman’s hand.
+set {readElenasMessage} = true
+protagonist: Cautious and clever, cousin.
+[end_timeline]
