@@ -9,4 +9,4 @@ func _ready() -> void:
 
 
 func interact() -> void:
-	player.sit()
+	player.sit(global_position.y + 0.5)

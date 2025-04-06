@@ -1,0 +1,115 @@
+[gd_scene load_steps=15 format=3 uid="uid://cceeoi7gtsy57"]
+
+[ext_resource type="Texture2D" uid="uid://gj11sd5f2wnq" path="res://assets/Doctor.png" id="1_ebdk3"]
+[ext_resource type="Script" uid="uid://bv66x8b2vokg" path="res://scripts/doctor.gd" id="1_wp5tr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wp5tr"]
+atlas = ExtResource("1_ebdk3")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebdk3"]
+atlas = ExtResource("1_ebdk3")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqx27"]
+atlas = ExtResource("1_ebdk3")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_byetv"]
+atlas = ExtResource("1_ebdk3")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1xagp"]
+atlas = ExtResource("1_ebdk3")
+region = Rect2(0, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mk1ly"]
+atlas = ExtResource("1_ebdk3")
+region = Rect2(16, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwhc6"]
+atlas = ExtResource("1_ebdk3")
+region = Rect2(32, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mly4o"]
+atlas = ExtResource("1_ebdk3")
+region = Rect2(48, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3207n"]
+atlas = ExtResource("1_ebdk3")
+region = Rect2(0, 64, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rqx27"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wp5tr")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebdk3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqx27")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_byetv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1xagp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mk1ly")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwhc6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mly4o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3207n")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ebdk3"]
+size = Vector2(9.33333, 5.83333)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wp5tr"]
+size = Vector2(10.6667, 29.6667)
+
+[node name="Doctor" type="CharacterBody2D"]
+z_index = 1
+scale = Vector2(3, 3)
+script = ExtResource("1_wp5tr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_rqx27")
+animation = &"idle"
+
+[node name="legs_collision" type="CollisionShape2D" parent="."]
+position = Vector2(0.666667, 13.4167)
+shape = SubResource("RectangleShape2D_ebdk3")
+
+[node name="InteractableArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractableArea"]
+position = Vector2(7.94729e-08, 1.5)
+shape = SubResource("RectangleShape2D_wp5tr")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="navigation_finished" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_navigation_finished"]
+[connection signal="path_changed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_path_changed"]
+[connection signal="target_reached" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_target_reached"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

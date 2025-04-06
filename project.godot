@@ -76,6 +76,7 @@ enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
 
 Wall=""
 Interactable=""
+Player=""
 
 [input]
 
