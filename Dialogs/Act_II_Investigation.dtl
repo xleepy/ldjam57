@@ -5,7 +5,7 @@
 	jump Act_II_Investigation/message_in_ventilation
 - sams_sketches
 - sams_room_window
-if {readElenasMessage} == false:
+if {readKeilasMessage} == false:
 	jump message_in_ventilation
 label official_familly_portrait
 description: A large, framed portrait hangs in the hallway—a formal depiction of the Mason family.\
@@ -22,6 +22,6 @@ description: The cover comes off easily. Too easily. You’re clearly not the fi
 Tucked into the narrow space behind it is a stack of papers. Several pages of handwritten messages—coded, in some cipher or language you don’t recognize.\
 But one thing is clear\: there are two distinct sets of handwriting.\
 One is Sam’s. The other is unmistakably a woman’s hand.
-set {readElenasMessage} = true
+set {readKeilasMessage} = true
 protagonist: Cautious and clever, cousin.
 [end_timeline]

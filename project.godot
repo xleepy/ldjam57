@@ -23,13 +23,16 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 [dialogic]
 
 directories/dch_directory={
+"Henry_Mason": "res://Dialogs/Characters/Henry_Mason.dch",
 "description": "res://Dialogs/Characters/description.dch",
+"ferry_captain": "res://Dialogs/Characters/ferry_captain.dch",
 "letter": "res://Dialogs/Characters/letter.dch",
 "protagonist": "res://Dialogs/Characters/protagonist.dch",
 "psychiatrist": "res://Dialogs/Characters/psychiatrist.dch"
 }
 directories/dtl_directory={
 "Act_II_Investigation": "res://Dialogs/Act_II_Investigation.dtl",
+"Henry_Mason": "res://Dialogs/Henry_Mason.dtl",
 "Prolog": "res://Dialogs/Prolog.dtl"
 }
 glossary/default_case_sensitive=true
@@ -53,10 +56,16 @@ choices/reveal_by_input=false
 save/autosave_delay=60.0
 save/encryption_on_exports_only=true
 text/autopauses={}
-layout/style_list=["res://Dialogs/Styles/BasiStyle.tres", "res://Dialogs/Styles/Letter.tres", "res://Dialogs/Styles/BasicStyleTest.tres", "res://Dialogs/Styles/Description.tres"]
+layout/style_list=["res://Dialogs/Styles/BasiStyle.tres", "res://Dialogs/Styles/Letter.tres", "res://Dialogs/Styles/BasicStyleTest.tres", "res://Dialogs/Styles/Description.tres", "res://Dialogs/Styles/Player.tres"]
 layout/default_style="res://Dialogs/Styles/BasiStyle.tres"
 variables={
-"readElenasMessage": false
+"dialogTemps": {
+"dChoice1": false,
+"dChoice2": false,
+"dChoice3": false
+},
+"readKeilasMessage": false,
+"sharpeIsSuspected": false
 }
 choices/hotkey_behaviour=1
 
