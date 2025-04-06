@@ -111,9 +111,9 @@ func hide_player() -> void:
 		is_hidden = true
 		#Dialogic.start("Prolog")
 		
-func sit() -> void:
+func sit(y_position: float) -> void:
 	animation.play('sit_front')
-	global_position.y = current_interactable_item.global_position.y 
+	global_position.y = y_position
 	is_sitting = true
 
 func _on_body_area_body_entered(body: Node2D) -> void:

@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://cawg2cjueiwhx"]
+
+[ext_resource type="Texture2D" uid="uid://bikx80jcq55l3" path="res://assets/Clock.png" id="1_vlc7k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y58p0"]
+atlas = ExtResource("1_vlc7k")
+region = Rect2(0, 0, 16, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eptq3"]
+atlas = ExtResource("1_vlc7k")
+region = Rect2(16, 0, 16, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vlc7k"]
+atlas = ExtResource("1_vlc7k")
+region = Rect2(0, 0, 16, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7dv1d"]
+atlas = ExtResource("1_vlc7k")
+region = Rect2(0, 0, 16, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_er1xc"]
+atlas = ExtResource("1_vlc7k")
+region = Rect2(16, 0, 16, 49)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7dv1d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y58p0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eptq3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vlc7k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7dv1d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_er1xc")
+}],
+"loop": true,
+"name": &"animated",
+"speed": 3.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_er1xc"]
+size = Vector2(14, 46)
+
+[node name="Clock" type="StaticBody2D" groups=["Wall"]]
+scale = Vector2(3, 3)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7dv1d")
+animation = &"animated"
+frame_progress = 0.719913
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_er1xc")

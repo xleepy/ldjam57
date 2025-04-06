@@ -1,15 +1,81 @@
-[gd_scene load_steps=3 format=3 uid="uid://dgfb7x81ajgxv"]
+[gd_scene load_steps=10 format=3 uid="uid://dgfb7x81ajgxv"]
 
-[ext_resource type="Texture2D" uid="uid://bnukl0xdblxh0" path="res://assets/Sheff-empty.png" id="1_eyi4x"]
+[ext_resource type="Texture2D" uid="uid://qquqplx1xs3s" path="res://assets/Sheff.png" id="1_eyi4x"]
+[ext_resource type="Script" uid="uid://wusadioycxpr" path="res://scripts/shelf.gd" id="1_xj574"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xj574"]
+atlas = ExtResource("1_eyi4x")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eyi4x"]
+atlas = ExtResource("1_eyi4x")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00mi8"]
+atlas = ExtResource("1_eyi4x")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_viw0s"]
+atlas = ExtResource("1_eyi4x")
+region = Rect2(0, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7q781"]
+atlas = ExtResource("1_eyi4x")
+region = Rect2(32, 48, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_00mi8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xj574")
+}],
+"loop": true,
+"name": &"empty",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eyi4x")
+}],
+"loop": true,
+"name": &"with_books_1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00mi8")
+}],
+"loop": true,
+"name": &"with_books_2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_viw0s")
+}],
+"loop": true,
+"name": &"with_books_3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7q781")
+}],
+"loop": true,
+"name": &"with_dishes",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xj574"]
 size = Vector2(91, 142)
 
 [node name="Shelf" type="StaticBody2D" groups=["Wall"]]
+script = ExtResource("1_xj574")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(3, 3)
-texture = ExtResource("1_eyi4x")
+sprite_frames = SubResource("SpriteFrames_00mi8")
+animation = &"with_dishes"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 1)
