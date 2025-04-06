@@ -30,10 +30,6 @@ var current_interactable_item: Node2D
 var move_actions = []
 
 func _ready() -> void:
-	var floor: TileMapLayer = $"../Floor"
-	var used_cells = floor.get_used_cells()
-	
-	print(used_cells)
 	var all_actions: Array = InputMap.get_actions()
 	for action in all_actions:
 		if action.begins_with("move_"):
