@@ -1,5 +1,5 @@
-extends StaticBody2D
-
+extends InteractableObject
 
 func interact() -> void:
-	print('goin to interact')
+	player.hide_player()
+	player.get_node("Label").text = "Hidden!"
