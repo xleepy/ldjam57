@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://e0m4wnojf64o"]
+[gd_scene load_steps=23 format=4 uid="uid://e0m4wnojf64o"]
 
 [ext_resource type="Texture2D" uid="uid://boeiigl4tafmq" path="res://assets/Room-1_2.png" id="1_045es"]
 [ext_resource type="PackedScene" uid="uid://d2286lgqhbjhq" path="res://scenes/player.tscn" id="2_omn1t"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://bc2q6rfb0e4df" path="res://scripts/level_ui.gd" id="7_f7u7y"]
 [ext_resource type="Script" uid="uid://bvjvj16l7oxg4" path="res://scripts/dialog_test.gd" id="7_omn1t"]
 [ext_resource type="PackedScene" uid="uid://cohuot7eqkgvi" path="res://scenes/ui/settings.tscn" id="8_jq2cn"]
-[ext_resource type="Script" uid="uid://bw81ihqd5g3vq" path="res://scripts/couch.gd" id="9_8bcou"]
 [ext_resource type="PackedScene" uid="uid://bgol1ub670bmk" path="res://scenes/couch.tscn" id="10_lf3p4"]
 [ext_resource type="PackedScene" uid="uid://dgfb7x81ajgxv" path="res://scenes/shelf.tscn" id="11_yydhl"]
 [ext_resource type="PackedScene" uid="uid://botx5oqpb3p7e" path="res://scenes/window.tscn" id="12_bekh1"]
@@ -293,6 +292,13 @@ region_rect = Rect2(138, 239, 12, 16)
 position = Vector2(-0.166664, -1.16667)
 shape = SubResource("RectangleShape2D_conm7")
 
+[node name="couch" parent="." instance=ExtResource("10_lf3p4")]
+position = Vector2(288, 181)
+chosen_animation = "red"
+
+[node name="couch2" parent="." instance=ExtResource("10_lf3p4")]
+position = Vector2(95, 182)
+
 [node name="DialogTest" type="StaticBody2D" parent="." groups=["Interactable", "Wall"]]
 position = Vector2(54, 350)
 scale = Vector2(3, 3)
@@ -306,10 +312,6 @@ region_rect = Rect2(546, 172, 12, 12)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DialogTest"]
 position = Vector2(-0.166672, -0.999985)
 shape = SubResource("RectangleShape2D_conm7")
-
-[node name="couch" parent="." groups=["Interactable"] instance=ExtResource("10_lf3p4")]
-position = Vector2(289, 186)
-script = ExtResource("9_8bcou")
 
 [node name="Shelf" parent="." instance=ExtResource("11_yydhl")]
 position = Vector2(190, 134)
