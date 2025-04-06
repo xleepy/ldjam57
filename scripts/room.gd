@@ -8,6 +8,11 @@ var room_visibility_by_variant: Dictionary = {
 }
 
 func _ready() -> void:
+	if room_variant == "hallway":
+		get_node("RightWall").queue_free()
+		get_node("LeftWall").queue_free()
+		return
+	
 	var visibility = room_visibility_by_variant[room_variant]
 	if visibility:
 		get_node(visibility['wall']).visible = true	
