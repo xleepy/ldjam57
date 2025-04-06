@@ -32,7 +32,7 @@ psychiatrist: “…can you tell me, Mr. Sharpe—what took you to Gull Island?�
 protagonist: "Few days ago ..."\
 "What day is today?"
 psychiatrist: "Friday, 7th of April"
-protagonist: "Six days ago, I have recieved a letter from my dear cousin Sam Mason"
+protagonist: "Six days ago, I have recieved a letter from my cousin Sam Whitmore"
 letter: My dear cousin,\
 \
 You remember, I’m sure, how there was always a bit of mystery shrouding my side of the family. Whispers at reunions, a sense that something was being kept from us—hidden behind polite smiles and half-answers. I used to think it was merely old money guarding old secrets. But I’ve come to believe it’s something far worse.\
@@ -49,4 +49,15 @@ Be cautious. Be clever. And above all, do not trust what they show you first.\
 \
 Yours,\
 Samuel
+protagonist: "I didn’t waste time with second thoughts, nor with much in the way of preparation. The day after the letter arrived, I was already bound for Gull Island.\
+It lies somewhere in the outer reach of Boston’s harbor—a few hours by water, though it feels farther still."
+protagonist: "The ferry was easy enough to find—there’s only one that goes there, after all. An old vessel, chipped paint and rust around the rails, operated by a quiet man with a smoker’s cough and eyes like dull marbles. He told me, without much prompting, that he’s the only one left willing to make the crossing."
+ferry_captain: "Not much traffic, you see," he said. "Doesn’t pay to go out there, not unless you’ve got business with the village. They pay me direct, now and then, to keep things supplied."
+protagonist: "He remembered Samuel. Said he’d ferried him over some weeks back—and that since then, not a soul had come or gone."
+ferry_captain: "People don’t leave Gull Island," he muttered, squinting toward the gray horizon. \
+"And folk from the mainland don’t go sniffin’ around unless they’ve got reason. Funny thing is...\
+your cousin had that same look about him. Like he knew something already."
+protagonist: The sky hung low with mist, and light rain traced fine lines across the deck. By the time the island came into view—if you could call that shape in the fog a view.\
+\
+By sundown, I was standing at the gate of the Mason manor.
 [end_timeline]
