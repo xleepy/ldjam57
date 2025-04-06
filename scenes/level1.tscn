@@ -213,16 +213,16 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_6sh32")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwgg1"]
-size = Vector2(15, 5.5)
+size = Vector2(7.66667, 5.33333)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6sh32"]
-size = Vector2(15, 30.5)
+size = Vector2(10.3333, 30.3333)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ejswk"]
-size = Vector2(15, 8)
+size = Vector2(8.66667, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bbk5w"]
-size = Vector2(15, 22)
+size = Vector2(11.6667, 30.3333)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bbk5w"]
 vertices = PackedVector2Array(126.773, 70.2031, 127.867, 167.539, 47.5625, 159.141, 27.7969, 68.8281)
@@ -265,13 +265,13 @@ region_rect = Rect2(3, 3, 9, 29)
 position = Vector2(0, -10)
 
 [node name="legs_collision" type="CollisionShape2D" parent="Player"]
-position = Vector2(1, 4.25)
+position = Vector2(1.83333, 3.33334)
 shape = SubResource("RectangleShape2D_dwgg1")
 
 [node name="BodyArea" type="Area2D" parent="Player"]
 
 [node name="body_collision" type="CollisionShape2D" parent="Player/BodyArea"]
-position = Vector2(1, -8.25)
+position = Vector2(1.16667, -8.83333)
 shape = SubResource("RectangleShape2D_6sh32")
 
 [node name="Label" type="Label" parent="Player"]
@@ -293,7 +293,7 @@ script = ExtResource("4_6sh32")
 texture = ExtResource("3_ru4tf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
-position = Vector2(-0.5, 12)
+position = Vector2(-0.666672, 12)
 shape = SubResource("RectangleShape2D_ejswk")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="Enemy"]
@@ -303,7 +303,7 @@ debug_enabled = true
 [node name="Area2D" type="Area2D" parent="Enemy"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/Area2D"]
-position = Vector2(-0.5, -3)
+position = Vector2(-0.833328, 1.16667)
 shape = SubResource("RectangleShape2D_bbk5w")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]

@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+class_name Player
 
 @export var speed: int = Global.tile_size * 2
 
@@ -8,6 +9,15 @@ var directionsMap: Dictionary = {
 	'move_down': Vector2.DOWN,
 	'move_right': Vector2.RIGHT,
 	'move_left': Vector2.LEFT
+}
+
+# check directions also if user moves forward 
+# kind of field of view
+var interactable_areas_to_check: Dictionary = {
+	'move_up': [Vector2.LEFT, Vector2.RIGHT],
+	'move_down': [Vector2.LEFT, Vector2.RIGHT],
+	'move_right': [Vector2.UP, Vector2.DOWN],
+	'move_left': [Vector2.UP, Vector2.DOWN]
 }
 
 
@@ -55,21 +65,46 @@ func move(direction: Vector2) -> void:
 	
 	move_and_slide()
 
-
-func check_object_by_move_direction(direction: Vector2):
-	var next_result = intersect_ray(direction, Global.tile_size)
-	if next_result and next_result.collider.is_in_group("Interactable"):
-		current_interactable_item = next_result.collider
-		z_index = 1 if direction == Vector2.UP else 0
-		$Label.visible = true
-	else:
+func reset_interactable() -> void:
+	if current_interactable_item:
 		current_interactable_item = null
 		$Label.visible = false
 		$Label.text = "[E] to interact"
 
+func set_interactable(node: Node2D, direction: Vector2) -> void:
+		current_interactable_item = node
+		z_index = 1 if direction == Vector2.UP else 0
+		$Label.visible = true
+
+# check if object in front of player movement
+# check if object in visible area defined in interactable_areas_to_check
+func check_object_by_move_direction(move_direction: String, direction: Vector2):
+	var half_of_tile = Global.tile_size * 0.75
+	var possible_distance = 0
+	if current_interactable_item:
+		possible_distance = direction.distance_to(current_interactable_item.global_position)
+	var distance_to_object = max(half_of_tile, possible_distance)
+	print('possible distance', possible_distance)
+	
+	var next_result = intersect_ray(direction, distance_to_object)
+	if next_result and next_result.collider.is_in_group("Interactable"):
+		set_interactable(next_result.collider, direction)
+	else:
+		var other_possible_interactable = interactable_areas_to_check[move_direction]
+		var possible_result: Dictionary
+		var found_direction: Vector2
+		for other_direction in other_possible_interactable:
+			possible_result = intersect_ray(other_direction, distance_to_object)
+			found_direction = other_direction
+			if possible_result:
+				break
+		if possible_result and possible_result.collider.is_in_group("Interactable"):
+			set_interactable(possible_result.collider, found_direction)
+		else:
+			reset_interactable()
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("interact") and current_interactable_item:
-		$Label.text = "Interacted!"
 		current_interactable_item.interact()
 
 func _physics_process(delta: float) -> void:
@@ -77,14 +112,15 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_pressed(action):
 			var move_vector = directionsMap[action]
 			move(move_vector)
-			check_object_by_move_direction(move_vector)
+			check_object_by_move_direction(action, move_vector)
 			
 			
 
 
-func _on_body_area_body_entered(body: Node2D) -> void:
-	print('entered node: ', body)
+func hide_player() -> void:
+	if current_interactable_item:
+		z_index = 0
+		current_interactable_item.z_index = 1
+		$Sprite2D.frame = 3
 
-
-func _on_body_area_body_exited(body: Node2D) -> void:
-	pass
+		
