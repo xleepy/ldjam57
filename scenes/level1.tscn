@@ -1,9 +1,8 @@
-[gd_scene load_steps=22 format=4 uid="uid://e0m4wnojf64o"]
+[gd_scene load_steps=19 format=4 uid="uid://e0m4wnojf64o"]
 
 [ext_resource type="Texture2D" uid="uid://boeiigl4tafmq" path="res://assets/Room-1_2.png" id="1_ejswk"]
 [ext_resource type="Texture2D" uid="uid://dp8vpydyps1mh" path="res://assets/Spritesheet.png" id="1_wwpf4"]
-[ext_resource type="Script" uid="uid://dtth37rc2wtgu" path="res://scripts/player.gd" id="2_m7ahb"]
-[ext_resource type="Texture2D" uid="uid://bsusbri7waa7f" path="res://assets/Detective-Sheet.png" id="3_conm7"]
+[ext_resource type="PackedScene" uid="uid://d2286lgqhbjhq" path="res://scenes/player.tscn" id="2_bbk5w"]
 [ext_resource type="Script" uid="uid://bc2q6rfb0e4df" path="res://scripts/level_ui.gd" id="3_dwgg1"]
 [ext_resource type="Texture2D" uid="uid://d3xjpwswgkqpo" path="res://assets/Detective.png" id="3_ru4tf"]
 [ext_resource type="Script" uid="uid://bwqhmikm7fmgk" path="res://scripts/enemy.gd" id="4_6sh32"]
@@ -212,12 +211,6 @@ texture = ExtResource("1_ejswk")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_6sh32")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dwgg1"]
-size = Vector2(15, 5.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6sh32"]
-size = Vector2(15, 30.5)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ejswk"]
 size = Vector2(15, 8)
 
@@ -250,38 +243,8 @@ scale = Vector2(3, 3)
 tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAABAAAAAAACAAAAAAACAAAAAAADAAAAAAADAAIAAAAEAAAAAAADAAIAAAAFAAAAAAAFAAAAAAAAAAEAAAAAAAEAAAAAAAIAAAAAAAIAAAAAAAMAAAAAAAMAAAABAAMAAAABAAMAAAACAAMAAAACAAMAAAADAAMAAAADAAMAAAAFAAMAAAAFAAMAAAAEAAMAAAADAAIAAAAGAAIAAAAGAAIAAAAGAAMAAAAGAAMAAAAGAAEAAAAGAAEAAAAGAAAAAAAGAAAAAAABAAEAAAABAAEAAAACAAEAAAACAAEAAAABAAIAAAABAAIAAAACAAIAAAACAAIAAAADAAIAAAADAAIAAAADAAEAAAADAAIAAAAEAAEAAAADAAIAAAAEAAIAAAADAAIAAAAFAAIAAAAFAAIAAAAFAAEAAAAFAAEAAAAHAAAAAAAHAAAAAAAHAAEAAAAHAAEAAAAHAAIAAAAHAAIAAAAHAAMAAAAHAAMAAAAHAAQAAAAHAAQAAAAHAAUAAAAHAAUAAAAHAAYAAAAHAAYAAAAHAAcAAAAHAAcAAAAAAAQAAAAAAAQAAAAAAAUAAAAAAAUAAAAAAAYAAAAAAAYAAAAAAAcAAAAAAAcAAAA=")
 tile_set = SubResource("TileSet_ejswk")
 
-[node name="Player" type="CharacterBody2D" parent="."]
+[node name="Player" parent="." instance=ExtResource("2_bbk5w")]
 position = Vector2(86, 279)
-scale = Vector2(3, 3)
-script = ExtResource("2_m7ahb")
-
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-position = Vector2(1, -9)
-texture = ExtResource("3_conm7")
-region_enabled = true
-region_rect = Rect2(3, 3, 9, 29)
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(0, -10)
-
-[node name="legs_collision" type="CollisionShape2D" parent="Player"]
-position = Vector2(1, 4.25)
-shape = SubResource("RectangleShape2D_dwgg1")
-
-[node name="BodyArea" type="Area2D" parent="Player"]
-
-[node name="body_collision" type="CollisionShape2D" parent="Player/BodyArea"]
-position = Vector2(1, -8.25)
-shape = SubResource("RectangleShape2D_6sh32")
-
-[node name="Label" type="Label" parent="Player"]
-visible = false
-offset_left = 9.0
-offset_top = -33.0
-offset_right = 22.0
-offset_bottom = -19.0
-scale = Vector2(0.6, 0.6)
-text = "[E]"
 
 [node name="Enemy" type="CharacterBody2D" parent="."]
 modulate = Color(0.470191, 0.0159284, 0.132899, 1)
@@ -376,8 +339,6 @@ text = "Back to menu
 
 [node name="Settings" parent="UI" instance=ExtResource("4_dwgg1")]
 
-[connection signal="body_entered" from="Player/BodyArea" to="Player" method="_on_body_area_body_entered"]
-[connection signal="body_exited" from="Player/BodyArea" to="Player" method="_on_body_area_body_exited"]
 [connection signal="navigation_finished" from="Enemy/NavigationAgent2D" to="Enemy" method="_on_navigation_agent_2d_navigation_finished"]
 [connection signal="velocity_computed" from="Enemy/NavigationAgent2D" to="Enemy" method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="body_entered" from="Enemy/Area2D" to="Enemy" method="_on_area_2d_body_entered"]
