@@ -144,7 +144,7 @@ script = ExtResource("1_g2els")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_f1ej7")
-animation = &"aim"
+animation = &"idle"
 offset = Vector2(0, -9)
 
 [node name="Camera2D" type="Camera2D" parent="."]

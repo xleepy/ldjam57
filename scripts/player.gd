@@ -33,6 +33,8 @@ var current_interactable_item: Node2D
 
 var move_actions = []
 
+var looking_direction: String = 'right'
+
 func _ready() -> void:
 	var all_actions: Array = InputMap.get_actions()
 	for action in all_actions:
@@ -53,9 +55,11 @@ func move(direction: Vector2) -> void:
 	animation.play("walk")
 	state = 'walk'
 	if direction == Vector2.LEFT:
+		looking_direction = 'left'
 		animation.scale.x = -1.0
 	elif direction == Vector2.RIGHT:
 		animation.scale.x = 1
+		looking_direction = 'right'
 		
 	if direction.length() > 0:
 		direction = direction.normalized()
@@ -95,6 +99,11 @@ func set_interactable(node: Node2D) -> void:
 func aim() -> void:
 	state = 'aim'
 	animation.play("aim")
+	if looking_direction == 'left':
+		aimed_arm.get_node("aimed_arm").scale.x = -1
+	else: 
+		aimed_arm.get_node("aimed_arm").scale.x = 1
+		
 	aimed_arm.visible = true
 
 func reset_aim() -> void:
@@ -109,16 +118,19 @@ func _unhandled_input(event: InputEvent) -> void:
 		current_interactable_item.interact()
 	if event.is_action_released("aim"):
 		reset_aim()
+		
+func handle_aim():
+	var direction = (get_global_mouse_position() - global_position).normalized()
+	var angle_to_mouse = direction.angle() + PI if looking_direction == 'left' else direction.angle()
+	print('deg: ', rad_to_deg(angle_to_mouse))
+	print('cos ', cos(angle_to_mouse))
+	if abs(cos(angle_to_mouse)) >= 0.7:
+		aimed_arm.rotation = angle_to_mouse
+	
 
 func _physics_process(delta: float) -> void:
 	if state == 'aim':
-		var mouse_position = get_global_mouse_position()
-		var direction = mouse_position - global_position
-		var angle_to_mouse = atan2(direction.y, direction.x)
-		var max_rotation = deg_to_rad(35)
-		var possible_rotation = clamp(angle_to_mouse, -max_rotation, max_rotation)
-		aimed_arm.rotation = possible_rotation
-		# handle all shoot logic here
+		handle_aim()
 		return
 		
 		
