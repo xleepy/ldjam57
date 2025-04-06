@@ -6,11 +6,11 @@
 &"custom_info": {
 "sound_mood_default": "",
 "sound_moods": {},
-"style": "BasicStyleTest"
+"style": "Description"
 },
 &"default_portrait": "",
 &"description": "",
-&"display_name": "Dr. Thorne",
+&"display_name": "",
 &"mirror": false,
 &"nicknames": [""],
 &"offset": Vector2(0, 0),

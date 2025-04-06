@@ -1,4 +1,4 @@
-BOSTON, 1922\
+*BOSTON*, 1922\
 Office of Dr. Alaric Thorne
 join psychiatrist center
 psychiatrist: "Feeling better today, Mr. Sharpe?"
@@ -21,11 +21,32 @@ Glance around the room.\
 "You’ve got a respectable setup here, Doctor. Shame I don’t remember checking in. Your name was on the door—mine, apparently, was in your files."\
 A beat.\
 "So... little help?"
-psychiatrist:     “You’re in Boston,” he says, pausing for a beat, “at my clinic.”\
-    “The police brought you here three nights ago—severely cold, and in a rather disturbed state. You were discovered near the waterfront, they told me. It took two days for your condition to stabilize.”\
+psychiatrist: “You’re in Boston,” he says, pausing for a beat, “at my clinic.”\
+“The police brought you here three nights ago—severely cold, and in a rather disturbed state. You were discovered near the waterfront, they told me. It took two days for your condition to stabilize.”\
 \
-    He adjusts his posture slightly, eyes calm but attentive.\
-\
-    “We spoke briefly yesterday about what happened, but…” another pause, longer this time
+He adjusts his posture slightly, eyes calm but attentive.
+psychiatrist: “We spoke briefly yesterday about what happened, but…”\
+another pause, longer this time
 psychiatrist: “…can you tell me, Mr. Sharpe—what took you to Gull Island?”
+[wait time="2.0"]
+protagonist: "Few days ago ..."\
+"What day is today?"
+psychiatrist: "Friday, 7th of April"
+protagonist: "Six days ago, I have recieved a letter from my dear cousin Sam Mason"
+letter: My dear cousin,\
+\
+You remember, I’m sure, how there was always a bit of mystery shrouding my side of the family. Whispers at reunions, a sense that something was being kept from us—hidden behind polite smiles and half-answers. I used to think it was merely old money guarding old secrets. But I’ve come to believe it’s something far worse.\
+\
+When I took over the handling of certain family matters—not long after Father passed—I began reviewing the old ledgers and estate documents. What I found unsettled me\: repeated names and transactions tying our family to the Masons of Gull Island. Strange exchanges of goods and money with no clear purpose. Accounts that seemed to vanish into thin air. It all pointed to one conclusion—we were being used. Or perhaps we had always been a part of something far older.\
+\
+The Mason family, Thomas… they are not what they appear. I thought, foolishly, that I could use the pretext of my childhood summers there to ask questions, look around, and find answers.\
+\
+I’ve been on the island for a week now, and the more I uncover, the more I understand that I’ve barely scratched the surface. There is something wrong here—something ancient and unspoken. The people, the place… even the sea feels as though it watches. I don’t know how much they suspect of me, but I fear I’ve already gone too far. And if you’re reading this letter, then my fears were justified. Something happened to me. I’ve failed.\
+\
+I ask you, Thomas—not as a cousin, but as someone I trust more than most—follow where I began. Come to Gull Island. Learn what this family—our family—has become entangled in. For my sake… and perhaps your own.\
+\
+Be cautious. Be clever. And above all, do not trust what they show you first.\
+\
+Yours,\
+Samuel
 [end_timeline]
