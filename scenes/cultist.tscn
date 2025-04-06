@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://bsymth6g363rk"]
+[gd_scene load_steps=29 format=3 uid="uid://bsymth6g363rk"]
 
 [ext_resource type="Script" uid="uid://bpp0n8o4kha6" path="res://scripts/cultist.gd" id="1_6kwtl"]
 [ext_resource type="Texture2D" uid="uid://b5tirgxjkakyk" path="res://assets/Cultist.png" id="1_8nqta"]
@@ -35,6 +35,14 @@ region = Rect2(32, 96, 32, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_6kwtl"]
 atlas = ExtResource("1_8nqta")
 region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4jiy2"]
+atlas = ExtResource("1_8nqta")
+region = Rect2(16, 64, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b20iv"]
+atlas = ExtResource("1_8nqta")
+region = Rect2(32, 64, 16, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bd6yb"]
 atlas = ExtResource("2_ag0xj")
@@ -127,6 +135,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_4jiy2")
+}],
+"loop": true,
+"name": &"sit_front",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b20iv")
+}],
+"loop": true,
+"name": &"sit_side",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_bd6yb")
 }, {
 "duration": 1.0,
@@ -185,7 +209,7 @@ script = ExtResource("1_6kwtl")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-0.666667, 0)
 sprite_frames = SubResource("SpriteFrames_ag0xj")
-animation = &"idle"
+animation = &"sit_front"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.58946e-07, 13.1667)

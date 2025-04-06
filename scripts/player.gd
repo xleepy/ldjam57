@@ -4,6 +4,7 @@ class_name Player
 
 @export var speed: int = Global.tile_size * 2
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
+@onready var aimed_arm: Marker2D = $shoulder_pivot
 
 var directionsMap: Dictionary = {
 	'move_up': Vector2.UP,
@@ -24,6 +25,9 @@ var interactable_areas_to_check: Dictionary = {
 var current_action: String
 var is_hidden = false
 var is_sitting = false
+
+# idle, walk, aim, taking damage,
+var state = 'idle'
 
 var current_interactable_item: Node2D
 
@@ -47,6 +51,7 @@ func intersect_ray(direction: Vector2, distance: float) -> Dictionary:
 
 func move(direction: Vector2) -> void:
 	animation.play("walk")
+	state = 'walk'
 	if direction == Vector2.LEFT:
 		animation.scale.x = -1.0
 	elif direction == Vector2.RIGHT:
@@ -86,22 +91,46 @@ func set_interactable(node: Node2D) -> void:
 		return	
 	current_interactable_item = node
 	$Label.visible = true
+	
+func aim() -> void:
+	state = 'aim'
+	animation.play("aim")
+	aimed_arm.visible = true
+
+func reset_aim() -> void:
+	state = 'idle'
+	animation.play("idle")
+	aimed_arm.visible = false
 
 func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("aim"):
+		aim()
 	if event.is_action_pressed("interact") and current_interactable_item:
 		current_interactable_item.interact()
+	if event.is_action_released("aim"):
+		reset_aim()
 
 func _physics_process(delta: float) -> void:
+	if state == 'aim':
+		var mouse_position = get_global_mouse_position()
+		var direction = mouse_position - global_position
+		var angle_to_mouse = atan2(direction.y, direction.x)
+		var max_rotation = deg_to_rad(35)
+		var possible_rotation = clamp(angle_to_mouse, -max_rotation, max_rotation)
+		aimed_arm.rotation = possible_rotation
+		# handle all shoot logic here
+		return
+		
+		
 	for action in move_actions:
 		if Input.is_action_pressed(action):
 			current_action = action
 			var move_vector = directionsMap[action]
 			move(move_vector)
-			
+				
 	if current_action and Input.is_action_just_released(current_action):
 		animation.play("idle")
-			
-
+		state = 'idle'
 
 func hide_player() -> void:
 	if current_interactable_item:
