@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @export var speed: int = Global.tile_size * 2
 
 var directionsMap: Dictionary = {
@@ -78,7 +78,18 @@ func _physics_process(delta: float) -> void:
 			var move_vector = directionsMap[action]
 			move(move_vector)
 			check_object_by_move_direction(move_vector)
-			
+	# flip player
+	if Input.is_action_pressed("move_right"):
+		animated_sprite.scale.x = 1.0
+	elif Input.is_action_pressed("move_left"):
+		animated_sprite.scale.x = -1.0
+	
+	# set animation
+	if velocity.length() > 0:
+		animated_sprite.play("walk")
+	else:
+		animated_sprite.stop()
+		animated_sprite.play("idle")
 			
 
 
