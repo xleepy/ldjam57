@@ -8,6 +8,9 @@ var detection_range: float = Global.tile_size * 2   # Range to detect player 16 
 
 var state = 'idle'
 
+func take_damage():
+	print('damage taken')
+
 func random_position() -> Vector2:
 	var viewport_rect = get_viewport_rect().size
 	var randX = randf_range(0, viewport_rect.x)

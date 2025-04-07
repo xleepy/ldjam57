@@ -184,8 +184,10 @@ position = Vector2(0.666667, 3.33333)
 texture = ExtResource("3_qhqgy")
 region_rect = Rect2(166, 11, 10, 8)
 
-[node name="Marker2D" type="Marker2D" parent="shoulder_pivot/aimed_arm"]
-position = Vector2(7.66667, -1)
+[node name="bullet_spawn" type="Marker2D" parent="shoulder_pivot/aimed_arm"]
+position = Vector2(8.33333, -0.999996)
+
+[node name="bullets" type="Node" parent="."]
 
 [connection signal="body_entered" from="InteractableArea" to="." method="_on_body_area_body_entered"]
 [connection signal="body_exited" from="InteractableArea" to="." method="_on_interactable_area_body_exited"]

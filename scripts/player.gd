@@ -5,6 +5,8 @@ class_name Player
 @export var speed: int = Global.tile_size * 2
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
 @onready var aimed_arm: Marker2D = $shoulder_pivot
+@onready var bullet_spawn: Marker2D = $shoulder_pivot/aimed_arm/bullet_spawn
+@onready var bullet_scene: PackedScene = preload("res://scenes/bullet_scene.tscn")
 
 var directionsMap: Dictionary = {
 	'move_up': Vector2.UP,
@@ -126,14 +128,22 @@ func handle_aim():
 	print('cos ', cos(angle_to_mouse))
 	if abs(cos(angle_to_mouse)) >= 0.7:
 		aimed_arm.rotation = angle_to_mouse
-	
+
+
+func shoot() -> void:
+	print('shoot')
+	var temp_bullet = bullet_scene.instantiate()
+	temp_bullet.position = bullet_spawn.global_position
+	temp_bullet.direction = (get_global_mouse_position() - bullet_spawn.global_position).normalized()
+	get_node("bullets").add_child(temp_bullet)
 
 func _physics_process(delta: float) -> void:
+	if state == 'aim' and Input.is_action_just_pressed("attack"):
+		shoot()
+		return
 	if state == 'aim':
 		handle_aim()
 		return
-		
-		
 	for action in move_actions:
 		if Input.is_action_pressed(action):
 			current_action = action
@@ -143,6 +153,8 @@ func _physics_process(delta: float) -> void:
 	if current_action and Input.is_action_just_released(current_action):
 		animation.play("idle")
 		state = 'idle'
+	
+	
 
 func hide_player() -> void:
 	if current_interactable_item:
