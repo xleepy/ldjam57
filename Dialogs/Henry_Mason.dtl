@@ -1,0 +1,56 @@
+label Act_II_Introduction
+set {dialogTemps.dChoice1} = false
+set {dialogTemps.dChoice2} = false
+set {dialogTemps.dChoice3} = false
+description: Mason mannor\
+five days earlier ...
+Henry_Mason: It saddens me that I must be the bearer of grim news to you. Our mutual friend, Samuel Whitmore, passed away… just one day ago
+- Astonished silence
+	description: You remain silent, thoughts racing. Even through the bleakness of the day, you had held onto a sliver of hope—that the letter had come too soon, that Sam’s fears were unfounded. But now the grim truth settles in.
+	Henry_Mason: "We were as shocked as you are. He was family… and I was very fond of him."
+	protagonist: What happened?
+- What happend?
+Henry_Mason: "An accident, I suppose. He’d taken a morning stroll—he enjoyed the eastern cliffs. The views there are... striking. But the wind is cruel, and some of those bluffs stand over thirty feet high."\
+He shrugs lightly, a well-measured gesture.\
+"Perhaps a sudden gust… or a misstep in the dim light. We didn’t know anything had happened until one of the soldiers came with the body."
+label multy_choice
+if {dialogTemps.dChoice1} == true && {dialogTemps.dChoice2} == true && {dialogTemps.dChoice3} == true:
+	jump Intro_continuation
+- Who found him? | [if {dialogTemps.dChoice1} == false] [else="hide"]
+	Henry_Mason: "Local boy came across the body—young Tom Hayworth, I believe. He alerted the garrison. The place where it happened is near the old fort, so the navy was on the scene quickly."\
+A pause.\
+"At least, that’s what I was told."
+	set {dialogTemps.dChoice1} = true
+	jump multy_choice
+- Did he leave anything behind? | [if {dialogTemps.dChoice2} == false] [else="hide"]
+	Henry_Mason: A moment’s pause. His eyes on you.\
+"All of his possessions are still in the room where he stayed. We haven’t cleared it yet. I thought it best to wait until the shock passed—then we’ll send his things to my sister."
+	- Did he keep a diary?
+		Henry_Mason: "A diary? I wouldn’t know. If he kept one, it would be in his room. We’ve respected his privacy, even after his passing."\
+His eyes narrow just slightly.\
+"I wasn’t aware you two were so close. He never mentioned you during his time here… neither we should expect you."\
+"And yet, here you are."
+	- Not press further
+		Henry_Mason: "Are you looking for something specific, Mr. Sharpe?"
+	set {dialogTemps.dChoice2} = true
+	jump multy_choice
+- May I see him? | [if {dialogTemps.dChoice3} == false] [else="hide"]
+	Henry_Mason: A slow shake of the head, tinged with regret.\
+"I’m afraid that won’t be possible. This island isn’t… equipped for proper storage. It was best to send him back quickly. He must have departed on the very same boat you arrived on."
+	description: You think back to the ferry. You hadn’t paid much attention during boarding—your eyes were on the mist, the cliffs, the house looming in the distance. But now…\
+You remember a large crate being loaded onto the deck. Heavy. Unmarked.\
+A cold feeling coils in your gut. You curse yourself for not looking closer.
+	set {dialogTemps.dChoice3} = true
+	jump multy_choice
+label Intro_continuation
+Henry_Mason: "Now then… It’s late, and I’m hosting a small gathering this evening—just a few friends from the village and the garrison. You’re, of course, welcome to join."\
+A small, unreadable smile.\
+"In the meantime, Mr. Wheeler will show you to your room. I trust you’ll find it comfortable
+- May I visit Sam's room?
+	Henry_Mason: He draws a thoughtful breath, then offers a composed nod.\
+"Of course. He was your closest cousin, after all."\
+A polite smile follows.\
+"His room is in the east corner—just at the opposite end of the corridor from yours."
+	set {sharpeIsSuspected} = true
+- Say nothing
+[end_timeline]
