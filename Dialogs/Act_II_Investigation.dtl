@@ -3,10 +3,14 @@
 	jump official_familly_portrait
 - message_in_ventilation
 	jump Act_II_Investigation/message_in_ventilation
-- sams_sketches
-- sams_room_window
-if {readKeilasMessage} == false:
-	jump message_in_ventilation
+- damians_sketches
+	jump damiens_room_desk
+- damian_room_window
+	jump damien_room_window
+- damian_belongings
+	jump damien_room_belongings
+- leaving_damian_room
+jump message_in_ventilation
 label official_familly_portrait
 description: A large, framed portrait hangs in the hallway—a formal depiction of the Mason family.\
 It appears only a few years old, judging by the face of the man you now know as Henry Mason. His expression is stern yet calculated, one gloved hand resting firmly on the back of a carved chair.\
@@ -21,7 +25,46 @@ You drop to your knees and peer inside. There’s a dim light spilling in from t
 description: The cover comes off easily. Too easily. You’re clearly not the first to remove it.\
 Tucked into the narrow space behind it is a stack of papers. Several pages of handwritten messages—coded, in some cipher or language you don’t recognize.\
 But one thing is clear\: there are two distinct sets of handwriting.\
-One is Sam’s. The other is unmistakably a woman’s hand.
+One is Damian’s. The other is unmistakably a woman’s hand.
 set {readKeilasMessage} = true
 protagonist: Cautious and clever, cousin.
+[end_timeline]
+label damien_room_window
+description: You move to the window. The glass is cold beneath your fingertips. Beyond it lies the wild edge of the island—the cliffs to the east where they say Damien fell.\
+You scan the terrain, but the view is obstructed by crags and undergrowth. You can’t see the spot itself.\
+Still… the sea is there, churning far below, mist curling off the waves like smoke. The wind rattles the frame slightly.\
+For a moment, the silence weighs heavy, what happend there. You must find out! 
+[end_timeline]
+label damien_room_belongings
+description: On the bed, you find two suitcases. Closed. Neatly packed.\
+Everything Damien brought with him must be inside—the rest of the room, aside from the desk, is clean and empty.\
+Was he preparing to leave?\
+Or had someone already packed for him?
+- Search through for diary
+	description: You carefully open each case and begin searching through layers of clothing, checking beneath the linings, between pages of a pocket Bible, even inside a cuff.\
+Nothing.\
+If Damien kept a diary, it’s not here.
+[end_timeline]
+label damiens_room_desk
+description: The desk drawers stick slightly as you pull them open. All empty.\
+On desk lies a folder one you would see in hand of artist.\
+Inside several drawings.\
+\
+
+description: A portrait of the Farrow family. Everyone but Mason Jr. is present. The likenesses are striking… and unsettling.
+description: There’s a sketch of the island village. Another of the lighthouse. A few coastal scenes. And one of the old naval fort—All drawn from memory or careful observation.
+if :
+description: And there—beneath the rest—is a portrait of a woman. She wears trousers and a high-collared jacket—practical, yet elegant. Firm posture and sharp gaze. Who is she?
+else:
+	description: And there—beneath the rest—is a portrait of a woman. She wears trousers and a high-collared jacket—practical, yet elegant. Firm posture and sharp gaze. That must be Countess du Bellay.
+[end_timeline]
+label damiens_room_leaving
+description: You take care to close the door gently, easing it shut without a sound.\
+But when you lift your head, your breath catches.\
+Farrows’ butler, stands at the far end of the hallway.\
+Silent. Still. Watching.\
+You freeze.
+description: For a moment, neither of you moves. The light from the wall sconce catches in his eyes—cold, unreadable.\
+Then, without a word, he turns and descends the staircase, his footsteps soft but deliberate.\
+As if nothing at all had happened.
 [end_timeline]

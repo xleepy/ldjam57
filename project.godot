@@ -64,7 +64,9 @@ variables={
 "dChoice2": false,
 "dChoice3": false
 },
+"heardAboutCountess": false,
 "readKeilasMessage": false,
+"sawSketches": false,
 "sharpeIsSuspected": false
 }
 choices/hotkey_behaviour=1
