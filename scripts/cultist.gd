@@ -9,7 +9,9 @@ var detection_range: float = Global.tile_size * 2   # Range to detect player 16 
 var state = 'idle'
 
 func take_damage():
+	state = 'take_damage'
 	print('damage taken')
+	animation.play("taken_damage")
 
 func random_position() -> Vector2:
 	var viewport_rect = get_viewport_rect().size
@@ -62,6 +64,8 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
+	if not state == 'idle':
+		return
 	velocity = velocity.move_toward(safe_velocity, 100)
 	move_and_slide()
 	
