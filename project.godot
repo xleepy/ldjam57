@@ -23,16 +23,13 @@ Dialogic="*res://addons/dialogic/Core/DialogicGameHandler.gd"
 [dialogic]
 
 directories/dch_directory={
-"Henry_Mason": "res://Dialogs/Characters/Henry_Mason.dch",
 "description": "res://Dialogs/Characters/description.dch",
-"ferry_captain": "res://Dialogs/Characters/ferry_captain.dch",
 "letter": "res://Dialogs/Characters/letter.dch",
 "protagonist": "res://Dialogs/Characters/protagonist.dch",
 "psychiatrist": "res://Dialogs/Characters/psychiatrist.dch"
 }
 directories/dtl_directory={
 "Act_II_Investigation": "res://Dialogs/Act_II_Investigation.dtl",
-"Henry_Mason": "res://Dialogs/Henry_Mason.dtl",
 "Prolog": "res://Dialogs/Prolog.dtl"
 }
 glossary/default_case_sensitive=true
@@ -86,6 +83,7 @@ enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
 Wall=""
 Interactable=""
 Player=""
+Enemy=""
 
 [input]
 
@@ -126,6 +124,11 @@ dialogic_default_action={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":32,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":88,"physical_keycode":0,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":0,"pressure":0.0,"pressed":false,"script":null)
+]
+}
+aim={
+"deadzone": 0.2,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":2,"position":Vector2(136, 30),"global_position":Vector2(145, 78),"factor":1.0,"button_index":2,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
 

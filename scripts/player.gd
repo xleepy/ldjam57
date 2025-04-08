@@ -4,6 +4,9 @@ class_name Player
 
 @export var speed: int = Global.tile_size * 2
 @onready var animation: AnimatedSprite2D = $AnimatedSprite2D
+@onready var aimed_arm: Marker2D = $shoulder_pivot
+@onready var bullet_spawn: Marker2D = $shoulder_pivot/aimed_arm/bullet_spawn
+@onready var bullet_scene: PackedScene = preload("res://scenes/bullet_scene.tscn")
 
 var directionsMap: Dictionary = {
 	'move_up': Vector2.UP,
@@ -25,9 +28,14 @@ var current_action: String
 var is_hidden = false
 var is_sitting = false
 
+# idle, walk, aim, taking damage,
+var state = 'idle'
+
 var current_interactable_item: Node2D
 
 var move_actions = []
+
+var looking_direction: String = 'right'
 
 func _ready() -> void:
 	var all_actions: Array = InputMap.get_actions()
@@ -47,10 +55,13 @@ func intersect_ray(direction: Vector2, distance: float) -> Dictionary:
 
 func move(direction: Vector2) -> void:
 	animation.play("walk")
+	state = 'walk'
 	if direction == Vector2.LEFT:
+		looking_direction = 'left'
 		animation.scale.x = -1.0
 	elif direction == Vector2.RIGHT:
 		animation.scale.x = 1
+		looking_direction = 'right'
 		
 	if direction.length() > 0:
 		direction = direction.normalized()
@@ -86,22 +97,64 @@ func set_interactable(node: Node2D) -> void:
 		return	
 	current_interactable_item = node
 	$Label.visible = true
+	
+func aim() -> void:
+	state = 'aim'
+	animation.play("aim")
+	if looking_direction == 'left':
+		aimed_arm.get_node("aimed_arm").scale.x = -1
+	else: 
+		aimed_arm.get_node("aimed_arm").scale.x = 1
+		
+	aimed_arm.visible = true
+
+func reset_aim() -> void:
+	state = 'idle'
+	animation.play("idle")
+	aimed_arm.visible = false
 
 func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("aim"):
+		aim()
 	if event.is_action_pressed("interact") and current_interactable_item:
 		current_interactable_item.interact()
+	if event.is_action_released("aim"):
+		reset_aim()
+		
+func handle_aim():
+	var direction = (get_global_mouse_position() - global_position).normalized()
+	var angle_to_mouse = direction.angle() + PI if looking_direction == 'left' else direction.angle()
+	print('deg: ', rad_to_deg(angle_to_mouse))
+	print('cos ', cos(angle_to_mouse))
+	if abs(cos(angle_to_mouse)) >= 0.7:
+		aimed_arm.rotation = angle_to_mouse
+
+
+func shoot() -> void:
+	print('shoot')
+	var temp_bullet = bullet_scene.instantiate()
+	temp_bullet.position = bullet_spawn.global_position
+	temp_bullet.direction = (get_global_mouse_position() - bullet_spawn.global_position).normalized()
+	get_node("bullets").add_child(temp_bullet)
 
 func _physics_process(delta: float) -> void:
+	if state == 'aim' and Input.is_action_just_pressed("attack"):
+		shoot()
+		return
+	if state == 'aim':
+		handle_aim()
+		return
 	for action in move_actions:
 		if Input.is_action_pressed(action):
 			current_action = action
 			var move_vector = directionsMap[action]
 			move(move_vector)
-			
+				
 	if current_action and Input.is_action_just_released(current_action):
 		animation.play("idle")
-			
-
+		state = 'idle'
+	
+	
 
 func hide_player() -> void:
 	if current_interactable_item:
@@ -109,7 +162,6 @@ func hide_player() -> void:
 		current_interactable_item.z_index = 1
 		animation.play("hide_behind")
 		is_hidden = true
-		#Dialogic.start("Prolog")
 		
 func sit(y_position: float) -> void:
 	animation.play('sit_front')

@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4gwi3m8n2620"]
+
+[ext_resource type="Texture2D" uid="uid://dp8vpydyps1mh" path="res://assets/Spritesheet.png" id="1_bw2vd"]
+[ext_resource type="Script" uid="uid://qd4u54e38kra" path="res://scripts/bullet_scene.gd" id="1_x4051"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_x4051"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bw2vd"]
+radius = 9.0
+
+[node name="BulletScene" type="CharacterBody2D"]
+script = ExtResource("1_x4051")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_x4051")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_bw2vd")
+region_enabled = true
+region_rect = Rect2(732, 205, 14, 14)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_bw2vd")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

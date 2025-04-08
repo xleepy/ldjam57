@@ -1,12 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://e0m4wnojf64o"]
+[gd_scene load_steps=17 format=3 uid="uid://e0m4wnojf64o"]
 
 [ext_resource type="PackedScene" uid="uid://b78p21slyxlpn" path="res://scenes/room.tscn" id="1_bekh1"]
 [ext_resource type="PackedScene" uid="uid://d2286lgqhbjhq" path="res://scenes/player.tscn" id="2_omn1t"]
 [ext_resource type="PackedScene" uid="uid://cceeoi7gtsy57" path="res://scenes/doctor.tscn" id="3_8bcou"]
-[ext_resource type="Texture2D" uid="uid://dp8vpydyps1mh" path="res://assets/Spritesheet.png" id="6_8bcou"]
 [ext_resource type="PackedScene" uid="uid://dwigbcl1mcad6" path="res://scenes/box.tscn" id="7_8bcou"]
 [ext_resource type="Script" uid="uid://bc2q6rfb0e4df" path="res://scripts/level_ui.gd" id="7_f7u7y"]
-[ext_resource type="Script" uid="uid://bvjvj16l7oxg4" path="res://scripts/dialog_test.gd" id="7_omn1t"]
 [ext_resource type="PackedScene" uid="uid://cawg2cjueiwhx" path="res://scenes/clock.tscn" id="8_8bcou"]
 [ext_resource type="PackedScene" uid="uid://cohuot7eqkgvi" path="res://scenes/ui/settings.tscn" id="8_jq2cn"]
 [ext_resource type="PackedScene" uid="uid://bgol1ub670bmk" path="res://scenes/couch.tscn" id="10_lf3p4"]
@@ -14,14 +12,12 @@
 [ext_resource type="PackedScene" uid="uid://botx5oqpb3p7e" path="res://scenes/window.tscn" id="12_bekh1"]
 [ext_resource type="PackedScene" uid="uid://m4km80n3d7yh" path="res://scenes/chair.tscn" id="14_f7u7y"]
 [ext_resource type="PackedScene" uid="uid://bggqacbjobp7f" path="res://scenes/curtains.tscn" id="14_jq2cn"]
+[ext_resource type="PackedScene" uid="uid://bsymth6g363rk" path="res://scenes/cultist.tscn" id="15_jq2cn"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_bbk5w"]
-vertices = PackedVector2Array(81.2891, 166.344, 6.34375, 166.344, 6.34375, 123.133, 81.0469, 121.547)
+vertices = PackedVector2Array(80.4063, 132.258, 80.5938, 157, 9, 157, 9, 131.727)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(91, 111.333, 91.3333, 176.333, -3.66666, 176.333, -3.66666, 113.333)])
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_conm7"]
-size = Vector2(12.3333, 14.3333)
+outlines = Array[PackedVector2Array]([PackedVector2Array(90.3333, 122.333, 90.6667, 167, -1, 167, -1, 121.667)])
 
 [sub_resource type="LabelSettings" id="LabelSettings_6sh32"]
 font_size = 24
@@ -46,7 +42,11 @@ room_variant = "right_wall"
 position = Vector2(86, 279)
 
 [node name="Doctor" parent="." instance=ExtResource("3_8bcou")]
-position = Vector2(736, 254)
+position = Vector2(146, 326)
+
+[node name="Cultist" parent="." instance=ExtResource("15_jq2cn")]
+z_index = 1
+position = Vector2(681, 255)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(604, -161)
@@ -59,20 +59,6 @@ chosen_animation = "red"
 
 [node name="couch2" parent="." instance=ExtResource("10_lf3p4")]
 position = Vector2(95, 182)
-
-[node name="DialogTest" type="StaticBody2D" parent="." groups=["Interactable", "Wall"]]
-position = Vector2(54, 350)
-scale = Vector2(3, 3)
-script = ExtResource("7_omn1t")
-
-[node name="Sprite2D" type="Sprite2D" parent="DialogTest"]
-texture = ExtResource("6_8bcou")
-region_enabled = true
-region_rect = Rect2(546, 172, 12, 12)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogTest"]
-position = Vector2(-0.166672, -0.999985)
-shape = SubResource("RectangleShape2D_conm7")
 
 [node name="Box" parent="." instance=ExtResource("7_8bcou")]
 position = Vector2(217, 261)
