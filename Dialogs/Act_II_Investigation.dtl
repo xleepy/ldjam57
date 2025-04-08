@@ -10,6 +10,7 @@
 - damian_belongings
 	jump damien_room_belongings
 - leaving_damian_room
+	jump damiens_room_leaving
 jump message_in_ventilation
 label official_familly_portrait
 description: A large, framed portrait hangs in the hallway—a formal depiction of the Mason family.\
@@ -33,7 +34,7 @@ label damien_room_window
 description: You move to the window. The glass is cold beneath your fingertips. Beyond it lies the wild edge of the island—the cliffs to the east where they say Damien fell.\
 You scan the terrain, but the view is obstructed by crags and undergrowth. You can’t see the spot itself.\
 Still… the sea is there, churning far below, mist curling off the waves like smoke. The wind rattles the frame slightly.\
-For a moment, the silence weighs heavy, what happend there. You must find out! 
+For a moment, the silence weighs heavy, what happend there. You must find out!
 [end_timeline]
 label damien_room_belongings
 description: On the bed, you find two suitcases. Closed. Neatly packed.\
@@ -50,10 +51,9 @@ description: The desk drawers stick slightly as you pull them open. All empty.\
 On desk lies a folder one you would see in hand of artist.\
 Inside several drawings.\
 \
-
 description: A portrait of the Farrow family. Everyone but Mason Jr. is present. The likenesses are striking… and unsettling.
 description: There’s a sketch of the island village. Another of the lighthouse. A few coastal scenes. And one of the old naval fort—All drawn from memory or careful observation.
-if :
+if {heardAboutCountess} == true:
 description: And there—beneath the rest—is a portrait of a woman. She wears trousers and a high-collared jacket—practical, yet elegant. Firm posture and sharp gaze. Who is she?
 else:
 	description: And there—beneath the rest—is a portrait of a woman. She wears trousers and a high-collared jacket—practical, yet elegant. Firm posture and sharp gaze. That must be Countess du Bellay.
