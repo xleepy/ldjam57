@@ -1,0 +1,38 @@
+if {introductionConstable} == true:
+	constable: He looks at you.\
+"Fine evening, aye?"
+	jump dialog_choices
+label Introduction
+description: You find yourself next to a stout, broad-shouldered man nursing a glass of brandy. His coat is plain but carries a small brass badge pinned near the collar—subtle, but intentional. He notices you looking and offers a genial nod.
+constable: "Ah—don’t believe I’ve had the pleasure. Walter Greaves. Constable ‘round here."\
+He says it like a badge of honor more than a job.
+protagonist: Thomas Sharp, I arrived today.
+constable: "Heard you came in today. Quite a crossing, I imagine."\
+He chuckles.\
+"Welcome to Gull Island. Don’t let the mist fool you—we're a quiet, decent place."
+set {introductionConstable} = true
+label dialog_choices
+- Opinion about Farrow | [else="hide"]
+	protagonist: What do you think of the Farrow family?
+	constable: "The Farrows? Fine folk. Old family—go back generations here. Mr. Farrow’s a good man. Keeps things steady. Gives folks work. Keeps the lights on, so to speak."\
+He lowers his voice slightly, conspiratorial.\
+"You hear stories, sure—but you’d hear stories anywhere. People just want to live in peace. That’s what he provides."
+- Farrow bussines
+	protagonist: What bussines do the Farrows do?
+	constable: He scratches his chin, clearly not expecting the question.\
+"Bit of trade, I think. Fisheries. Freight. Property management. They’ve got land, investments—old money, you know? Whatever it is, it keeps the island afloat."\
+He shrugs, more at ease again.\
+"Most folk here know better than to poke at the roots of something that’s still bearing fruit."
+- Damien dead
+	protagonist: I heard about Damien Atwood..
+	constable: He stiffens slightly.\
+"Unfortunate, that. Real shame. Young man had a good head, far as I could tell. But it was an accident. That’s what the garrison said, and that’s what it was."
+	- Was it?
+		protagonist: You’re certain it wasn’t something else?
+		constable: "Listen, I don’t know what brought you here, Mr. Sharpe, and it’s no business of mine. But stirring up trouble over a tragedy… that won’t do anyone any good."\
+"This island’s got a way of life. People are happy. They don’t need strangers digging for ghosts."
+	- Say nothing
+	jump dialog_choices
+- Leave
+	[end_timeline]
+[end_timeline]
